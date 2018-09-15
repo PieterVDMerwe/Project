@@ -1,0 +1,932 @@
+ \documentclass[a4paper, 11pt]{FSKH_623_Report} 
+
+\title{Solving the Friedman equation for Dark Fluid equation of state.}                                                                      
+\problemnumber{}                                             
+\author{Pieter vd Merwe}                                         
+\studentnumber{25957937}                                           
+\date{\today}  
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{xfrac}
+\usepackage{esvect}
+\usepackage{varwidth} 
+\usepackage{physics}
+\usepackage{tensor}
+\usepackage{microtype}
+%\usepackage{chngcntr}
+%%%%%LINESPACING%%%%%%%%%
+%\renewcommand{\baselinestretch}{0.5}
+\usepackage{titlesec}
+
+
+
+
+\titlespacing\section{0pt}{0pt plus 0pt minus 2pt}{0pt plus 0pt minus 2pt}
+\titlespacing\subsection{0pt}{0pt plus 0pt minus 2pt}{0pt plus 0pt minus 2pt}
+\titlespacing\subsubsection{0pt}{0pt plus 0pt minus 2pt}{0pt plus 0pt minus 2pt}
+%%%%%%%%5Numbering%%%%%%%%%%%%%
+%\counterwithin{equation}{section}
+\numberwithin{equation}{section}
+\renewcommand{\theequation}{\thechapter.\thesection.\arabic{equation}}
+%%%%%%%%%%%%%Floating table solutions %%%%%%%%%%%%%%%%%%
+\usepackage{float}
+\restylefloat{table}
+%%%%%%%%%%%%%%%%%%%%%%Multiple equations on the same line%%%%%%%%%%%%%%%%%%%%
+\usepackage{multicol}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\driv}[2]{\frac{d #1}{d #2}}
+\newcommand{\con}{\frac{8\pi}{3}G}
+\newcommand{\brac}[1]{\left(#1\right)}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                        
+
+\begin{document}
+
+\maketitle
+
+\pagenumbering{gobble}                                            
+\tableofcontents                                                  
+\pagebreak
+\pagenumbering{arabic}
+\chapter{Cosmology}
+\section{Introduction}
+The aim of Cosmology is to understand the underlying laws of physics, that are assumed to hold throughout the universe, by explaining the origin and evolution of the universe and all processes contained within it. 
+\section{Newtonian cosmology}
+In 1691 Isaac Newton formulated a Cosmology based on his theory of gravitation contained within his \textit{Philosophiae Naturalis Principia Mathematica} published in 1687.\citep{ITC}
+Newton considered the universe to be homogeneous (Copernican principle \citep{calcagni2017classical}) and isotropic (has the same properties in all directions) and thus that the distribution of matter in the universe would look the same to all observers regardless of their position \citep{ITC}.This is known as the cosmological principle and holds for scales larger than $170Mpc$\citep{ITC}.\\
+In 1755 Immanuel Kant, inspired by Thomas Wright`s description of the Milk Way (1750), suggested that the diffuse nebulae observed by Galileo could be distant galaxies\citep{ITC}. This offered support to the validity of the Cosmological principle on Galactic scales. Kant also suggested, erroneously, that there also exists repulsive gravitational forces that could both explain the transversal velocities of the stars and compensate for the infinite gravitational forces that should be experienced due to an infinite number of stars, the existence of which is implied by the cosmological principle. \\
+In 1825 Pierre Simon de Laplace disproved Kant`s hypothesis by noting that all the planets and satellites show transversal motion in the same direction, which would be too improbable as Kant`s proposed repulsive gravitational forces would require the transversal velocities to be scattered in random directions\citep{ITC}. Laplace showed that the observed motion could be attributed to the rotation of the primordial gaseous nebulae that the solar system originates from using the conservation of angular momentum. Bernhard Riemann also noted that the universe could be finite while remaining unbounded if the geometry of space has a positive curvature shedding further doubt on the existence of Kant`s repulsive gravitational forces.\\
+Contained within Newton`s \textit{Philosophiae Naturalis Principia Mathematica}, is Newton`s first law of motion, which states that a system that has no external forces acting on it, is at rest or moving in uniform motion. Systems of this nature is known as inertial frames. Newton considered an implicit referral to an \textit{absolute} reference system contained within the notions of \textit{at rest} and \textit{uniform motion}, which could not be observed by humans. Ernst Mach published work in 1883 in which he rejected Newton`s concept of an absolute reference system, realizing that all motion is relative\citep{ITC}. \\ 
+\section{General Relativity (GR)}
+Studying the laws of physics from the perspective of observers in different inertial frames, Albert Einstein made the connection between the Geometry of space and the distribution of matter \citep{ITC} and published his \textit{General theory of Relativity} in 1915. The theory is a generalization of Einstein`s theory of special relativity and Newton`s law of gravitation to non-inertial reference frames.\\
+There exists conflicts between Newton`s law of gravitation and Special relativity. Firstly, Newton`s Law of gravitation contains only scalars and cannot be written in terms of invariants. Newton`s law of gravitation also does not explicitly account for time dependence, implying that the effects of gravity are instantaneous throughout the universe, which violates the principles of Special relativity. Finally, Newton`s gravitation law does not account for the weak equivalence principle, which states that gravitational mass and inertial mass (Newton`s second law) is equivalent, which has been experimentally found to hold to 1 part in $10^{-13}$ \citep{EP}. \\
+Einstein set out to resolve the above mentioned conflicts and inaccuracies by generalizing the weak equivalence principle to the strong equivalence principle and combining it with the principle of general covariance.\citep{ITC} \\
+The Strong equivalence principle states that \textit{to a free falling observer, the results of any locally performed experiment is independent of the magnitude of the gravitational field.}\citep{GRFD, ITC}  \\
+The principle of general covariance entails rewriting the laws of physics in terms of quantities that are invariant in reference frames with an arbitrary acceleration.\citep{ITC} Einstein had already previously rewritten Newton`s second law, $\vec{F}=m\vec{a}$, in a form that is invariant in all inertial frames during his formulation of Special relativity: $$\vec{F}=\gamma\left(\frac{1}{c}\dv{E}{t},\dv{\vec{p}}{t}\right)$$with $\gamma$ the Lorentz factor. He now went on to apply the principle of general covariance, by rewriting Newton`s second law in terms of Tensor quantities and affine connections: $$\tensor{F}{^\mu}=\frac{D\tensor{P}{^\mu}}{D\tau}\equiv\dv{\tensor{P}{^\mu}}{\tau}+\tensor{\Gamma}{^\mu_{\sigma\nu}}\tensor{P}{^\sigma}\dv{\tensor{x}{^\nu}}{\tau}$$ with the affine connection $$\tensor{\Gamma}{^\mu_{\sigma\nu}}=\frac{1}{2}\tensor{g}{^{\mu\rho}}\left(\pdv{\tensor{g}{_{\sigma\rho}}}{x^\nu}+\pdv{\tensor{g}{_{\nu\rho}}}{x^\sigma}-\pdv{\tensor{g}{_{\sigma\nu}}}{x^\rho}\right)$$ a derivable function of derivatives of the metric tensor $\tensor{g}{_{\mu\nu}}$.\citep{ITC} In order to achieve this transition from the relativistic form of Newton`s second law to one that is generally covariant, one must realise that Newton`s second law contains space-time derivatives that are dependent on the local geometry of space-time, which is described by the metric tensor. To write Newton`s law in a form that is generally covariant, the covariant derivative operator $$\frac{\tensor{D}{_\mu}\tensor{A}{^\mu}}{D\tau}=\dv{\tensor{A}{^\mu}}{\tau}+\tensor{\Gamma}{^\mu_{\alpha\beta}}\tensor{A}{^\alpha}\dv{\tensor{x}{^{\beta}}}{\tau}$$ has been introduced \citep{GRFD}. \\ 
+Noting that space is only flat locally and only by approximation, Einstein set out to combine the Principle of equivalence and the Generally covariant form of Newton`s second law and came to the realization that an inhomogeneous gravitational field is equivalent to a curved space-time. He found the simplest formulation that describes this to be:
+$$\tensor{G}{_{\mu\nu}}=\frac{8\pi G}{c^{4}}\tensor{T}{_{\mu\nu}}$$
+which forms the ten independent Einstein field equations, with 
+$$\tensor{G}{_{\mu\nu}}=\tensor{R}{_{\mu\nu}}-\frac{1}{2}R\tensor{g}{_{\mu\nu}}$$ where $\tensor{T}{_{\mu\nu}}$ is the Stress-energy tensor, $\tensor{R}{_{\mu\nu}}$ the Ricci tensor and $R$ the Ricci scalar\citep{ITC}. These equations reduce to Newton`s equations in the Weak field limit.
+\section{The expanding universe}
+After formulating and publishing his theory of general relativity, Einstein proceeded to apply GR to cosmology in 1917. The result of the application of GR, Einstein found, was that of an expanding universe, but due to the belief at the time added a constant to the Field equations in order to have a static universe solution: $$\tensor{G}{_{\mu\nu}}=\frac{8\pi G}{c^{4}}\tensor{T}{_{\mu\nu}}+\Lambda\tensor{g}{_{\mu\nu}}.$$ In 1917, after Einstein`s theory of general relativity, Willem de Sitter published another solution to Einstein`s equation, for an empty space-time with an exponential expansion \citep{ITC, NPSNe}.\\
+Another solution to Einstein`s field equations which idicated an expanding universe, was found by Alexander Friedmann in 1922 \citep{Friedman1922}, and was followed up by Georges Lema\^itre, Howard Robertson and Arthur Walker independently. Their solutions to the field equations is referred to as the Friedmann-Lemaître-Robertson-Walker (FLRW) metric \citep{GRFD}.\\
+In 1929, Edwin Hubble made observations that confirmed that the redshift of most galaxies are dependant to our distance from them, indicating that the universe is expanding \citep{GRFD} Hubble found a linear dependence: $$\nu=H_{0}r$$ with $H_{0}=69.8^{+5.3}_{-4.1}km s^{-1}Mpc^{-1}$ the Hubble constant \citep{HPValue}. Observations made by the 2011 Nobel prize winners, however, suggests that the universe is undergoing an accelerated expansion \citep{NPSNe}.
+To describe such a universe, a negative pressure is required in the Raynchaudhuri equation (see section 5.3), which dominates for the late time universe. This suggest the existence of another dark component of the energy content of the universe known as Dark Energy.\\
+With the realization of an expanding universe Einstein removed a constant term from his equation, which was later added back into his equation to attribute for the accelerated expansion of the universe (Dark energy constant $\Lambda$).
+\section{The Concordance model ($\Lambda$CDM-model)}
+The application of GR using the cosmological principle and an expanding universe, due to Hubble`s observations, in a space-time filled with only pressureless matter lead to the Hot Big Bang model. The later observation of a discrepancy between the  predicted and observed rotation of galaxies lead to the addition of Dark Matter to the believed composition of the energy-matter density of the universe. After the observation of an accelerated expansion of the universe, it became apparent that yet another addition to the energy-matter density composition of the universe was necessary. A cosmological constant , with a negative pressure Equation of state, was again added \citep{GRFD}. This lead to the currently accepted cosmological model (the Concordance model).
+\subsection{Fluid equation from Newtonian Mechanics}
+
+From the first law of thermodynamics we have that  
+\begin{equation}\label{eq:2}
+\begin{split}
+dE &= -PdV + dQ\\
+\end{split}
+\end{equation}
+With $dE$ the change in energy content, $P$ the pressure, $dV$ the change in volume and $dQ$ the change in heat.
+Considering an Isotropic and homogeneous universe \citep{notes4},the expansion of the universe will be adiabatic with the Pressure $P$ constant and there will be no change in the heat ($Q$) content of the universe since there is nowhere for the heat to come from \citep{notes4}. From this we can then conclude that the $dQ$ term in equation (\ref{eq:2}) will be $dQ=0$ and reduces to.
+\begin{equation}
+\begin{split}
+dE &= -PdV \\
+\end{split}
+\end{equation}
+This implies that
+\begin{equation}\label{eq:3}
+\begin{split}
+\dot{E} &= -P\driv{V}{t}             \\
+\end{split}
+\end{equation}
+since $P$ is a constant.
+We have that for c the speed of light 
+\begin{equation}\label{eq:1}
+\begin{split}
+E &=\frac{4\pi}{3}c^{2}r^{3}\rho\\
+\end{split}
+\end{equation}
+where $\rho$ is the mass density as a function of time.
+If we now consider a expanding universe where the relative motion of galaxies are not due to intrinsic peculiar velocities, but to the expansion of the universe then we can write $r$ as $r=a(t)\chi$ where $\chi$ is the actual distance between the two points (galaxies) and $a(t)$ the expansion parameter defined so that $a(t)=1$ at the present time. Equation (\ref{eq:1}) then becomes
+\begin{equation}
+\begin{split}
+E &=\frac{4\pi}{3}c^{2}a^{3}\chi^{3}\rho\\
+\end{split}
+\end{equation}
+From this then follows that
+\begin{equation}
+\begin{split}
+\dot{E} &= \frac{4\pi\chi^{3} c^{2}}{3}\left(3a^{2}\dot{a}\rho+\dot{\rho}a^{3}\right)\\
+\end{split}
+\end{equation}
+Substituting this back into equation (\ref{eq:3}) yields
+\begin{equation}\label{eq:4}
+\begin{split}
+\dot{\rho}+3H\left(\rho+P\right) &= 0\\
+\end{split}
+\end{equation}
+Where $H$ is the Hubble parameter.
+If we now use the equation of state for a perfect fluid: $P=\rho\omega$, where $\omega$ can be a function of time, in such a way that P remains a constant.
+then equation (\ref{eq:4}) becomes
+\begin{equation}\label{eq:6}
+\begin{split}
+\dot{\rho}+3H\left(1+\omega\right)\rho &= 0\\
+\end{split}
+\end{equation}
+This ODE has a solution of the form  
+\begin{equation}
+\begin{split}
+\rho &= Ca^{-3\left(1+\omega\right)}
+\end{split}
+\end{equation}
+with $C$ constant.
+For dust (matter) $\omega=0$, for radiation $\omega=\frac{1}{3}$ and for the cosmological constant $\omega=-1$ \citep{notes4, GRFD}. From this then follows that for matter, for radiation and the cosmological constant respectfully: 
+\begin{multicols}{3}
+\begin{equation}
+\begin{split}
+\rho &= C_{d}a^{-3}\\
+\end{split}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+\rho &= C_{rad}a^{-4}\\
+\end{split}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+\rho &= C_{DE}\\
+\end{split}
+\end{equation}
+\end{multicols}
+these solutions to the fluid equation as well as the fluid equation (\ref{eq:6}) agrees with what is expected from literature \citep{GRFD, ITC}. 
+
+\subsection{The Friedman equation}
+Consider a isolated, isotropic sphere with mass $M$ and radius $r=a(t)\chi$, where $a(t)$ is the expansion coefficient and $\chi$ the distance between any two points in the sphere \citep{notes4}. From Newtons shell theorem \citep{IronShell}, objects (with mass $m$) on the surface of the sphere will experience the gravitational force due to the mass within the sphere as if all the mass is at the center of the shell. From this the equation of motion for points on the surface of the sphere can be found from Newton`s second law:
+\begin{equation}
+\begin{split}
+m\ddot{r} &= -\frac{GMm}{r^{2}}\\
+\end{split}
+\end{equation}
+Multiplying both sides of the equation with $\dot{r}$, dividing by $m$ and integrating over time gives
+\begin{equation}
+\begin{split}
+\frac{1}{2}\dot{r}^2 &= \frac{GM}{r}+U\\
+\end{split}
+\end{equation}
+Where $U$ is an integration constant. Since we have that $M=\frac{4\pi}{3}r^{3}\rho$ and $r=a\chi$, it follows that
+\begin{equation}\label{eq:5}
+\begin{split}
+\left(\frac{\dot{a}}{a}\right)^{2} &= \frac{8\pi}{3}G\rho+\frac{2U}{a^{2}\chi^{2}}\\
+\end{split}
+\end{equation}
+which is the expansion equation, with $\rho$ the mass-density.
+\subsection{The Raychaudhuri Equation}
+From the result of the Expansion equation (\ref{eq:5}) and the Fluid Equation (\ref{eq:6}) the Acceleration equation can be found as:
+\begin{equation}
+\begin{split}
+\frac{\ddot{a}}{a} &= -\frac{4\pi}{3}G\left(\rho +3P\right)\\
+\end{split}
+\end{equation}
+where $P=\rho\omega$ is the pressure.
+\subsection{Solving the Friedman equation for different epochs and curvatures}
+Equation (\ref{eq:5}) can be rewritten as \citep{notes4}
+\begin{equation}
+\begin{split}\label{eq:CurvFriedman}
+\dot{a}^{2} &= \frac{8\pi G}{3c^{2}}\epsilon a^{2}-\kappa\frac{c^{2}}{R_{0}^{2}}\\
+&= A\epsilon a^{2}-\kappa B\\
+\end{split}
+\end{equation}
+with $\epsilon$ energy density, $\kappa$ curvature and $R_{0}$ the present value of curvature radius. Let curvature take the values $\kappa=-1$ for open space, $\kappa=1$ for closed space and $\kappa=0$ for flat space \citep{Curv}, then using the solutions to equation (\ref{eq:6}) the solutions to the Friedman equation (\ref{eq:5}) can be summarised as
+%\pagebreak
+\subsubsection{Solving for Matter dominated Epochs}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[H]
+\centering
+\begin{tabular}{| c | c | c |}
+\hline\hline
+curvature $\kappa$ &$a$  &$t$ \\
+\hline\hline
+$0$  &$\sqrt[3]{AC_{d}}\brac{\frac{3}{2}}^\frac{2}{3}\brac{t-t_{0}}^{\frac{2}{3}}$ & - \\
+\hline
+$1$  &$\frac{AC_{d}}{2B}\brac{1-\cos\brac{\sqrt{B}\brac{\eta}}}$ & $\frac{AC_{d}}{2B}\brac{\eta-\frac{1}{\sqrt{B}}\sin\brac{\sqrt{B}\brac{\eta}}}$ \\
+\hline
+$-1$  & $\frac{AC_{d}}{2B}\brac{\cosh\brac{\sqrt{B}\brac{\eta}}-1}$ & $\frac{AC_{d}}{2B}\brac{\frac{1}{\sqrt{B}}\sinh\brac{\sqrt{B}\brac{\eta}}-\eta}$ \\
+\hline
+\end{tabular}
+\end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Solving for Radiation dominated Epochs}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[H]
+\centering
+\begin{tabular}{| c | c | c |}
+\hline\hline
+curvature $\kappa$ &$a$  &$t$ \\
+\hline\hline
+$0$  &$\sqrt{2}\sqrt[4]{AC_{rad}}\brac{t-t_{0}}^{\frac{1}{2}}$ & - \\
+\hline
+$1$  &$\sqrt{\frac{AC_{rad}}{B}}\sin\brac{\sqrt{B}\brac{\eta}}$ & $-\sqrt{\frac{AC_{rad}}{B^{2}}}\cos\brac{\sqrt{B}\brac{\eta}}$ \\
+\hline
+$-1$  & $\sqrt{AC_{rad}}\sinh\brac{\sqrt{B}\brac{\eta}}$ & $\sqrt{\frac{AC_{rad}}{B}}\cosh\brac{\sqrt{B}\brac{\eta}}$ \\
+\hline
+\end{tabular}
+\end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Solving for Dark Energy dominated Epochs}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[H]
+\centering
+\begin{tabular}{| c | c | c |}
+\hline\hline
+curvature $\kappa$ &$a$  &$t$ \\
+\hline\hline
+$0$  &$e^{\sqrt{AC_{DE}}\brac{t-t_{0}}}$ & - \\
+\hline
+$1$  &$\sqrt{\frac{B}{AC_{DE}}}\cosh\brac{\sqrt{AC_{DE}}\brac{t-t_{0}}}$ & - \\
+\hline
+$-1$  & $-\sqrt{\frac{B}{AC_{DE}}}\csch\sqrt{B}\brac{\eta}$ & $-\sqrt{\frac{1}{AC_{DE}}}ln\left|\tanh\frac{\sqrt{B}}{2}\brac{\eta}\right|$ \\
+\hline
+\end{tabular}
+\end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Where the a new parametrization, known as the conformal time parametrization has been introduced. The new parametrization is defined by, 
+\begin{equation}
+\begin{split}
+\int dt &= \int a d\eta\\
+\end{split}
+\end{equation}
+where $\eta$ is the farthest distance that information could have travelled since the beginning of the universe\citep{ConF}.
+\section{Shortcomings of the Concordance model and New propositions}
+Though the Concordance model has been very successful thus far in the description of a Hot Big Bang Cosmology, several problems still exist that brings the correctness of the concordance model into question. \\
+First among the above mention problems include The Horizon and Flatness problems. The Horizon problem Brings into question the assumption of homogeneity of the initial universe, as approximately $\backsim 10^{83}$ separate region of the universe are not casually connected \citep{IU}. The Flatness problem refers to the   energy-density $\rho$ of the universe that is observed to be very near to the critical density $\rho_{cr}=\frac{3H^{2}}{8\pi G}$ \citep{GRES, IU}. These problems as well as the The monopole problem in which the concordance predicts the existence of monopoles in quantities much larger that observed , are solved if one introduces an inflationary universe \citep{IU}. An inflationary universe describes a cosmology that undergoes a sudden inflation after the radiation dominated Epoch that occurs due to the expanding supercooling and then subsequently reheating of the primordial universe. The problem with such a cosmology is the difficulty of a finding a sufficiently smooth inflation that can be reconsiled with the concordance modal \citep{IU}.\\
+
+\chapter{Chaplygin gas}
+As stated in Chapter 1, observations of the luminosities of type Ia supernovae suggest that the universe is undergoing an accelerated expansion \citep{NPSNe, RMCGAU}, which suggests the existence of Dark Energy. One possible candidate for Dark Energy, which also aims to unify Dark energy and Dark matter, is a Chaplygin gas equation of state which has characteristics of a Matter dominated epoch for small values of the expansion coefficient and characteristics of a Dark Energy dominated epoch for larger values of the expansion coefficient.
+
+\section{The modified Chaplygin gas equation of state}
+\renewcommand{\baselinestretch}{0.5}
+There are many different forms of Chaplygin gas equations of state, three of which are \citep{kahya2015universe}:
+\begin{itemize}
+\item Original Chaplygin gas (OCG):
+\begin{equation}\label{eq:OCG}
+\begin{split}
+P &= -\frac{A_{1}}{\rho},         \\
+\end{split}
+\end{equation}
+\item Generalised Chaplygin gas (GCG):
+\begin{equation}\label{eq:GCG}
+\begin{split}
+P &= -\frac{A_{1}}{\rho^{\alpha}},\ \ \ \ \alpha>-1,         \\
+\end{split}
+\end{equation}
+\item Modified Chaplygin gas (MCG):
+\begin{equation}\label{eq:MCG}
+\begin{split}
+P &=A_{2}\rho -\frac{A_{2}}{\rho^{\alpha}},\ \ \ \ \alpha>-1,         \\
+\end{split}
+\end{equation}
+\end{itemize}
+\renewcommand{\baselinestretch}{1.3}
+where $A_{1},A_{2}$ and $\alpha$ are free parameters. The MCG reduces to the GCG for $A_{2}=0$, which in tern reduces to the OCG for $\alpha=1$.
+\subsection*{Solving the fluid equation}
+Substituting the Equation of state for the MCG, equation (\ref{eq:MCG}), into the fluid equation (\ref{eq:4}) gives :
+\begin{equation}\label{eq:FMCG0}
+\begin{split}
+\dot{\rho}+3H\brac{\rho+\brac{A_{2}\rho-\frac{A_{1}}{\rho^{\alpha}}}} &= 0. \\
+\end{split}
+\end{equation}
+Solving this first order differential equation, we find that:
+\begin{equation}\label{eq:FMCG}
+\begin{split}
+\rho&=\brac{\frac{c_{2}a^{-3\brac{\alpha+1}\brac{1+A_{2}}}+A_{1}}{\brac{1+A_{2}}}}^{\frac{1}{\alpha+1}}.\\ \end{split} \end{equation} 
+For $A_{1}=0$ this reduces to the solution for the generalized Chaplygin gas. For $A_{1}=0$ and $\alpha=1$ this reduces to the ordinary Chaplygin gas.
+For the ordinary Chaplygin gas:
+\begin{equation}\label{eq:OCGRH}
+\begin{split}
+\rho&=\brac{c_{2}a^{-6}+A_{1}}^{\frac{1}{2}}.\\
+\end{split}
+\end{equation}
+If we consider large values of $a\ \brac{a>>1}$, the constant term in equation (\ref{eq:OCGRH}) dominates and the Chaplygin gas reduces to the the energy density of the cosmological constant, with $\Lambda=\sqrt{A_{2}}$. Considering small values of $a\ \brac{a<<1}$ the non-constant term in equation (\ref{eq:OCGRH}) dominates and the Chaplygin gas reduces to the the energy density of dust $\rho=c_{3}a^{-3}$.
+
+\section{Solving the Friedman equation for the MCG and\\ flat curvature}
+Rewriting the results of equation (\ref{eq:FMCG}), we have:
+\begin{equation}\label{eq:ReFMCG}
+\begin{split}
+\rho&=\brac{B_{3}a^{-3\brac{\beta}\brac{B_{1}}}+B_{2}}^{\frac{1}{\beta}}\\
+\end{split}
+\end{equation}
+where $\beta=\alpha+1$, $B_{1}=1+A_{1}$, $B_{2}=\frac{A_{2}}{1+A_{1}}$ and $B_{3}=\frac{c_{2}}{1+A_{1}}$. Substituting this into the Friedman equation (\ref{eq:CurvFriedman}) gives:
+\begin{equation}\label{eq:B6}
+\begin{split}
+\dot{a}^{2} &= A\rho a^{2}-\kappa F\\
+&= A\brac{B_{3}a^{-3\beta B_{1}}+B_{2}}^{\frac{1}{\beta}} a^{2}-\kappa F.\\
+\end{split}
+\end{equation}
+
+
+\newpage
+\chapter{Appendices}
+\section*{Appendix A}
+\subsection*{Equation of State from Newtonian Mechanics}
+
+From the first law of thermodynamics we have that  
+\begin{equation}
+\begin{split}
+dE &= -PdV + dQ\\
+\end{split}
+\end{equation}
+With $dE$ the change in energy content, $P$ the pressure, $dV$ the change in volume and $dQ$ the change in heat.
+Considering an Isotropic and homogeneous universe \citep{notes4},the expansion of the universe will be adiabatic with the Pressure $P$ constant and there will be no change in the heat ($Q$) content of the universe since there is nowhere for the heat to come from \citep{notes4}. From this we can then conclude that the $dQ$ term in equation 1 will be $dQ=0$ and reduces to.
+\begin{equation}
+\begin{split}
+dE &= -PdV \\
+\end{split}
+\end{equation}
+this impies that
+\begin{equation}
+\begin{split}
+E(t) &= -PV(t)\\
+\Rightarrow \dot{E} &= \frac{d\left(-PV\right)}{dt}\\
+&= -\driv{P}{t}V-P\driv{V}{t}\\
+&= -P\driv{V}{t}             \\
+\end{split}
+\end{equation}
+since $P$ is a constant.
+We have that for M the total mass and c the speed of light 
+\begin{equation}
+\begin{split}
+V &= \frac{4\pi}{3}r^{3}\\
+E &= Mc^{2}\\
+&=\frac{4\pi}{3}c^{2}r^{3}\rho\\
+\end{split}
+\end{equation}
+where $\rho$ is the mass density as a function of time.
+If we now consider a expanding universe where the relative motion of galaxies are not due to intrinsic peculiar velocities, but to the expansion of the universe then we can write $r$ as $r=a(t)\chi$ where $\chi$ is the actual distance between the two points (galaxies) and $a(t)$ the expansion parameter defined so that $a(t)=1$ at the present time. Equations 4 then becomes
+\begin{equation}
+\begin{split}
+V &= \frac{4\pi}{3}a^{3}\chi^{3}\\
+E &= Mc^{2}\\
+&=\frac{4\pi}{3}c^{2}a^{3}\chi^{3}\rho\\
+\end{split}
+\end{equation}
+From this then follows that
+\begin{equation}
+\begin{split}
+\dot{V} &= 4\pi\chi^{3}a^{2}\dot{a}\\
+\end{split}
+\end{equation}
+and
+\begin{equation}
+\begin{split}
+\dot{E} &= \frac{4\pi\chi^{3} c^{2}}{3}\left(3a^{2}\dot{a}\rho+\dot{\rho}a^{3}\right)\\
+\end{split}
+\end{equation}
+Substituting this back into equation 3 yields
+\begin{equation}
+\begin{split}
+\frac{4\pi\chi^{3} c^{2}}{3}\left(3a^{2}\dot{a}\rho+\dot{\rho}a^{3}\right) &= -P4\pi\chi^{3}a^{2}\dot{a}\\
+\Rightarrow \dot{\rho}+3\frac{\dot{a}}{a}\rho+3P\frac{\dot{a}}{a} &= 0\\
+\Rightarrow \dot{\rho}+3\frac{\dot{a}}{a}\left(\rho+P\right) &= 0\\
+\Rightarrow \dot{\rho}+3H\left(\rho+P\right) &= 0\\
+\end{split}
+\end{equation}
+Where $H$ is the Hubble parameter.
+If we now let $P=\rho\omega$, where $\omega$ can be a function of time, in such a way that P remains a constant.
+then equation 8 becomes
+\begin{equation}
+\begin{split}
+\dot{\rho}+3H\left(\rho+\rho\omega\right) &= 0\\
+\dot{\rho}+3H\left(1+\omega\right)\rho &= 0\\
+\end{split}
+\end{equation}
+We can solve this ODE 
+\begin{equation}
+\begin{split}
+\dot{\rho}+3H\left(1+\omega\right)\rho &= 0\\
+\Rightarrow \frac{\dot{\rho}}{\rho} &= -3H\left(1+\omega\right)\\
+\Rightarrow \frac{\dot{\rho}}{\rho} &= -3\left(1+\omega\right)\frac{\dot{a}}{a}\\
+\Rightarrow ln(\rho) &= -3\left(1+\omega\right)ln(a) + k\\
+\Rightarrow \rho &= Ca^{-3\left(1+\omega\right)}
+\end{split}
+\end{equation}
+with $C$ and $k$ constants.
+For matter $\omega=0$, for radiation $\omega=\frac{1}{3}$ and for the cosmological constant $\omega=-1$ \citep{notes4}. From this then follows that for matter 
+\begin{equation}
+\begin{split}
+\rho &= Ca^{-3}\\
+\end{split}
+\end{equation}
+for radiation
+\begin{equation}
+\begin{split}
+\rho &= Ca^{-4}\\
+\end{split}
+\end{equation}
+and for the cosmological constant
+\begin{equation}
+\begin{split}
+\rho &= C\\
+\end{split}
+\end{equation}
+
+
+\subsection*{The Expansion equation}
+Consider a isolated, isotropic sphere with mass $M$ and radius $R=a(t)r$, where $a(t)$ is the expansion coefficient and $r$ the distance between any two points in the sphere \citep{notes4}. From Newtons shell theorem \citep{IronShell}, objects (with mass $m$) on the surface of the sphere will experience the gravitational force due to the mass within the sphere as if all the mass is at the center of the shell. From this the equation of motion for points on the surface of the sphere can be found from Newton`s second law:
+\begin{equation}
+\begin{split}
+m\ddot{R} &= -\frac{GMm}{R^{2}}\\
+\end{split}
+\end{equation}
+Multiplying both sides of the equation with $\dot{R}$, dividing by $m$ and integrating over time gives
+\begin{equation}
+\begin{split}
+\ddot{R}\dot{R} &= -\frac{GM}{R^{2}}\dot{R}\\
+\Rightarrow\frac{1}{2}\dot{R}^2 &= \frac{GM}{R}+U\\
+\end{split}
+\end{equation}
+Where $U$ is an integration constant. Since we have that $M=\frac{4\pi}{3}R^{3}\rho$ and $R=ar$, it follows that
+\begin{equation}
+\begin{split}
+\frac{1}{2}\dot{R}^2 &= \frac{GM}{R}+U\\
+\Rightarrow\frac{1}{2}\dot{a}^{2}r^{2} &= \frac{\frac{4\pi}{3}a^{3}r^{3}\rho G}{ar}+U\\
+\Rightarrow\left(\frac{\dot{a}}{a}\right)^{2} &= \frac{8\pi}{3}G\rho+\frac{2U}{a^{2}r^{2}}\\
+\end{split}
+\end{equation}
+which is the expansion equation, with $\rho$ the mass-density.
+\pagebreak
+\subsection*{The Acceleration equation}
+From the result of equation (3) (The Expansion equation) and the equation of state:
+\begin{equation}
+\begin{split}
+\dot{\rho}+3H\left(1+\omega\right)\rho &= 0\\
+\end{split}
+\end{equation}
+we can find the Acceleration equation.
+From the The Expansion equation (3) we have that
+\begin{equation}
+\begin{split}
+\left(\frac{\dot{a}}{a}\right)^{2} &= \frac{8\pi}{3}G\rho+\frac{2U}{a^{2}r^{2}}\\
+\Rightarrow \dot{a}^{2} &= \frac{8\pi}{3}G\rho a^{2}+\frac{2U}{r^{2}}\\
+\Rightarrow \driv{}{t}\left(\dot{a}^{2}\right) &= \driv{}{t}\left(\frac{8\pi}{3}G\rho a^{2}+\frac{2U}{r^{2}}\right)\\
+\Rightarrow 2\dot{a}\ddot{a} &= \frac{8\pi}{3}G\left(2\rho a\dot{a}+\dot{\rho}a^{2}\right)\\
+\end{split}
+\end{equation}
+dividing this by $2a\dot{a}$ and substituting in the Equation of State (with $H=\frac{\dot{a}}{a}$) gives
+\begin{equation}
+\begin{split}
+\Rightarrow \frac{\ddot{a}}{a} &= \frac{4\pi}{3}G\left(2\rho +\dot{\rho}\frac{a}{\dot{a}}\right)\\
+\Rightarrow \frac{\ddot{a}}{a} &= \frac{4\pi}{3}G\left(2\rho -3H\left(1+\omega\right)\rho\frac{a}{\dot{a}}\right)\\
+\Rightarrow \frac{\ddot{a}}{a} &= \frac{4\pi}{3}G\left(2\rho -3\left(1+\omega\right)\rho\right)\\
+\Rightarrow \frac{\ddot{a}}{a} &= -\frac{4\pi}{3}G\left(\rho +3\omega\rho\right)\\
+\Rightarrow \frac{\ddot{a}}{a} &= -\frac{4\pi}{3}G\left(\rho +3P\right)\\
+\end{split}
+\end{equation}
+where $P=\rho\omega$ is the pressure.The result of (6) is the Acceleration equation.
+
+\pagebreak
+\subsection*{Solving the Friedman equations for different epochs and curvatures}
+Equation (3) can be rewritten as \citep{notes4}
+\begin{equation}
+\begin{split}
+\dot{a}^{2} &= \frac{8\pi G}{3c^{2}}\epsilon a^{2}-\kappa\frac{c^{2}}{R_{0}^{2}}\\
+&= A\epsilon a^{2}-\kappa B\\
+\end{split}
+\end{equation}
+with $\epsilon$ energy density, $\kappa$ curvature and $R_{0}$ the present value of curvature radius.
+
+\subsubsection*{Solving for flat space}
+For flat space $\kappa=0$
+\paragraph*{matter dominated epoch}
+For matter dominated epoch $\epsilon=C_{0}a^{-3}$, from which follows that equation (7) becomes
+\begin{equation}
+\begin{split}
+\dot{a}^{2} &= AC_{0}a^{-1}-0\\
+\Rightarrow \sqrt{a}\dot{a} &= \sqrt{AC_{0}}\\
+\Rightarrow \int \sqrt{a}da &= \sqrt{AC_{0}}\int dt\\
+\Rightarrow a^{\frac{3}{2}} &= \sqrt{AC_{0}}\frac{3}{2}\brac{t-t_{0}}\\
+\Rightarrow a &= \sqrt[3]{AC_{0}}\brac{\frac{3}{2}}^\frac{2}{3}\brac{t-t_{0}}^{\frac{2}{3}}\\
+\end{split}
+\end{equation}
+\paragraph*{Radiation dominated epoch}
+For matter dominated epoch $\epsilon=C_{0}a^{-4}$, from which follows that equation (7) becomes
+\begin{equation}
+\begin{split}
+\dot{a}^{2} &= AC_{0}a^{-2}-0\\
+\Rightarrow a\dot{a} &= \sqrt{AC_{0}}\\
+\Rightarrow \int ada &= \sqrt{AC_{0}}\int dt\\
+\Rightarrow a^{2} &= 2\sqrt{AC_{0}}\brac{t-t_{0}}\\
+\Rightarrow a &= \sqrt{2}\sqrt[4]{AC_{0}}\brac{t-t_{0}}^{\frac{1}{2}}\\
+\end{split}
+\end{equation}
+\paragraph*{For dark energy dominated epoch}
+For matter dominated epoch $\epsilon=C_{0}$, from which follows that equation (7) becomes
+\begin{equation}
+\begin{split}
+\dot{a}^{2} &= AC_{0}a^{2}-0\\
+\Rightarrow \frac{\dot{a}}{a} &= \sqrt{AC_{0}}\\
+\Rightarrow \int \frac{da}{a} &= \sqrt{AC_{0}}\int dt\\
+\Rightarrow ln\brac{a} &= \sqrt{AC_{0}}\brac{t-t_{0}}\\
+\Rightarrow a &= e^{\sqrt{AC_{0}}\brac{t-t_{0}}}\\
+\end{split}
+\end{equation}
+\subsubsection*{Solving for closed space}
+For closed space $\kappa=1$
+\begin{equation}
+\begin{split}
+\dot{a}^{2} &= A\epsilon a^{2}-B\\
+\end{split}
+\end{equation}
+\paragraph*{For matter dominated epoch}
+For matter dominated epochs $\epsilon=C_{0}a^{-3}$, from which follows that equation (11) becomes
+\begin{equation}
+\begin{split}
+\dot{a}^{2} &= AC_{0} a^{-1}-B\\
+\Rightarrow \dot{a} &= \sqrt{AC_{0} a^{-1}-B}\\
+\Rightarrow \frac{\sqrt{a}\dot{a}}{\sqrt{{AC_{0}-Ba}}} &= 1\\
+\Rightarrow \int\frac{\sqrt{a}da}{\sqrt{AC_{0}-Ba}} &= \int dt\\
+\end{split}
+\end{equation}
+Introducing a new parametrization
+\begin{equation}
+\begin{split}
+\int dt &= \int ad\eta\\
+\end{split}
+\end{equation}
+with $\eta$ the conformal time. Inserting this into equation (12) yields
+\begin{equation}
+\begin{split}
+\int\frac{da}{\sqrt{a}\sqrt{AC_{0}-Ba}} &= \int d\eta\\
+\Rightarrow 
+\end{split}
+\end{equation}
+Letting $u=\sqrt{a}$
+\begin{equation}
+\begin{split}
+\frac{2}{\sqrt{B}}\int\frac{du}{\sqrt{\frac{AC_{0}}{B}-u^{2}}} &= \int d\eta\\
+\Rightarrow \arcsin\frac{u\sqrt{B}}{\sqrt{AC_{0}}} &= \frac{\sqrt{B}}{2}\brac{\eta-\eta_{0}}\\
+\Rightarrow u &= \frac{\sqrt{AC_{0}}}{\sqrt{B}}\sin\brac{\frac{\sqrt{B}}{2}\brac{\eta-\eta_{0}}}\\
+\Rightarrow a &= \frac{AC_{0}}{B}\sin^{2}\brac{\frac{\sqrt{B}}{2}\brac{\eta-\eta_{0}}}\\
+\end{split}
+\end{equation}
+and 
+\begin{equation}
+\begin{split}
+\int dt &= \int ad\eta \\
+\Rightarrow \int dt &= \int \frac{AC_{0}}{B}\sin^{2}\brac{\frac{\sqrt{B}}{2}\brac{\eta-\eta_{0}}}d\eta \\
+\Rightarrow \int dt &= \frac{AC_{0}}{2B}\int 1-\cos\brac{\sqrt{B}\brac{\eta-\eta_{0}}}d\eta \\
+\Rightarrow t-t_{0} &= \frac{AC_{0}}{2B}\brac{\eta-\frac{1}{\sqrt{B}}\sin\brac{\sqrt{B}\brac{\eta-\eta_{0}}}} \\
+\end{split}
+\end{equation}
+For $t=t_{0}=0$, $\eta_{0}=0$, from which follows that
+\begin{equation}
+\begin{split}
+\Rightarrow a &= \frac{AC_{0}}{B}\sin^{2}\brac{\frac{\sqrt{B}}{2}\brac{\eta}}\\
+&= \frac{AC_{0}}{2B}\brac{1-\cos\brac{\sqrt{B}\brac{\eta}}}\\
+\Rightarrow t &= \frac{AC_{0}}{2B}\brac{\eta-\frac{1}{\sqrt{B}}\sin\brac{\sqrt{B}\brac{\eta}}} \\
+\end{split}
+\end{equation}
+
+
+\paragraph*{For radiation dominated epoch}
+For matter dominated epochs $\epsilon=C_{0}a^{-4}$, from which follows that equation (11) becomes
+\begin{equation}
+\begin{split}
+\dot{a}^{2} &= AC_{0} a^{-1}-B\\
+\Rightarrow \dot{a} &= \sqrt{AC_{0} a^{-2}-B}\\
+\Rightarrow \dot{a} &= \sqrt{\frac{{AC_{0}-Ba^{2}}}{a^{2}}}\\
+\Rightarrow \int \frac{1}{\sqrt{{AC_{0}-Ba^{2}}}}da &= \int d\eta\\
+\Rightarrow \frac{1}{\sqrt{B}}\int \frac{1}{\sqrt{{\frac{AC_{0}}{B}-a^{2}}}}da &= \int d\eta\\
+\Rightarrow a &= \sqrt{\frac{AC_{0}}{B}}\sin\brac{\sqrt{B}\brac{\eta-\eta_{0}}}\\
+\end{split}
+\end{equation}
+Substituting this back into equation (13)
+\begin{equation}
+\begin{split}
+\int dt &= \int ad\eta\\
+\Rightarrow \int dt &= \int \sqrt{\frac{AC_{0}}{B}}\sin\brac{\sqrt{B}\brac{\eta-\eta_{0}}} d\eta\\
+\Rightarrow t-t_{0} &= -\sqrt{\frac{AC_{0}}{B^{2}}}\cos\brac{\sqrt{B}\brac{\eta-\eta_{0}}} \\
+\end{split}
+\end{equation}
+From which follows
+\begin{equation}
+\begin{split}
+\Rightarrow  a &= \sqrt{\frac{AC_{0}}{B}}\sin\brac{\sqrt{B}\brac{\eta}}\\
+\Rightarrow t &= -\sqrt{\frac{AC_{0}}{B^{2}}}\cos\brac{\sqrt{B}\brac{\eta}} \\
+\end{split}
+\end{equation}
+\paragraph*{For Dark energy dominated epoch}
+For matter dominated epochs $\epsilon=C_{0}$, from which follows that equation (11) becomes
+\begin{equation}
+\begin{split}
+\dot{a}^{2} &= AC_{0}a^{2}-B\\
+\Rightarrow \dot{a} &= \sqrt{AC_{0}a^{2}-B}\\
+\Rightarrow \dot{a} &= \sqrt{B}\sqrt{a^{2}\frac{AC_{0}}{B}-1}\\
+\Rightarrow \int \frac{da}{\sqrt{a^{2}\frac{AC_{0}}{B}-1}} &= \sqrt{B}\int dt\\
+\end{split}
+\end{equation}
+Letting $u=a\sqrt{\frac{AC_{0}}{B}}$
+\begin{equation}
+\begin{split}
+\int \frac{da}{\sqrt{a^{2}\frac{AC_{0}}{B}-1}} &= \sqrt{B}\int dt\\
+\Rightarrow \frac{1}{\sqrt{\frac{AC_{0}}{B}}}\int\frac{du}{\sqrt{u^{2}-1}} &= \sqrt{B}\int dt\\
+\Rightarrow \int\frac{du}{\sqrt{u^{2}-1}} &= \sqrt{AC_{0}}\int dt\\
+\Rightarrow ln\left|u+\sqrt{u^{2}-1}\right| &= \sqrt{AC_{0}}\brac{t-t_{0}}\\
+\Rightarrow \cosh^{-1} u &= \sqrt{AC_{0}}\brac{t-t_{0}}\\
+\Rightarrow u &= \cosh\brac{\sqrt{AC_{0}}\brac{t-t_{0}}}\\
+\Rightarrow a &= \sqrt{\frac{B}{AC_{0}}}\cosh\brac{\sqrt{AC_{0}}\brac{t-t_{0}}}\\
+\end{split}
+\end{equation}
+\pagebreak
+\subsubsection*{Solving for open space}
+For open space $\kappa=-1$
+\begin{equation}
+\begin{split}
+\dot{a}^{2} &= A\epsilon a^{2}+B\\
+\end{split}
+\end{equation}
+\paragraph*{matter dominated epoch}
+For matter dominated epochs $\epsilon=C_{0}a^{-3}$, from which follows that equation (23) becomes
+\begin{equation}
+\begin{split}
+\dot{a}^{2} &= AC_{0}a^{-1}+B\\
+\Rightarrow \dot{a} &= \sqrt{\frac{AC_{0}+Ba}{a}}\\
+\Rightarrow \int\sqrt{\frac{a}{AC_{0}+Ba}}da &= \int ad\eta \\
+\Rightarrow \int\frac{1}{\sqrt{a}\sqrt{AC_{0}+Ba}}da &= \int d\eta \\
+\end{split}
+\end{equation}
+letting $u=\sqrt{a}\sqrt{\frac{B}{AC_{0}}}$ equation (24) becomes
+\begin{equation}
+\begin{split}
+\int\frac{1}{\sqrt{aAC_{0}}\sqrt{1+\frac{Ba}{AC_{0}}}}da &= \int d\eta \\
+\Rightarrow \int\frac{1}{\sqrt{1+u^{2}}}da &= \frac{\sqrt{B}}{2}\brac{\eta-\eta_{0}}\\
+\Rightarrow ln\brac{u+\sqrt{1+u^{2}}} &= \frac{\sqrt{B}}{2}\brac{\eta-\eta_{0}}\\
+\Rightarrow \sinh^{-1}u &= \frac{\sqrt{B}}{2}\brac{\eta-\eta_{0}}\\
+\Rightarrow u &= \sinh\brac{\frac{\sqrt{B}}{2}\brac{\eta-\eta_{0}}}\\
+\Rightarrow a &= \frac{AC_{0}}{B}\sinh^{2}\brac{\frac{\sqrt{B}}{2}\brac{\eta-\eta_{0}}}\\
+\Rightarrow a &= \frac{AC_{0}}{2B}\brac{\cosh\brac{\sqrt{B}\brac{\eta-\eta_{0}}}-1}\\
+\end{split}
+\end{equation}
+Inserting this into the conformal time parametrization 
+\begin{equation}
+\begin{split}
+\int dt &= \int ad\eta\\
+\int dt &= \int \frac{AC_{0}}{2B}\brac{\cosh\brac{\sqrt{B}\brac{\eta-\eta_{0}}}-1} d\eta\\
+t-t_{0} &= \frac{AC_{0}}{2B}\brac{\frac{1}{\sqrt{B}}\sinh\brac{\sqrt{B}\brac{\eta-\eta_{0}}}-\eta}\\
+\end{split}
+\end{equation}
+from which follows
+\begin{equation}
+\begin{split}
+a &= \frac{AC_{0}}{2B}\brac{\cosh\brac{\sqrt{B}\brac{\eta}}-1}\\
+t &= \frac{AC_{0}}{2B}\brac{\frac{1}{\sqrt{B}}\sinh\brac{\sqrt{B}\brac{\eta}}-\eta}\\
+\end{split}
+\end{equation}
+\paragraph*{For radiation dominated epoch}
+For radiation dominated epochs $\epsilon=C_{0}a^{-4}$, from which follows that equation (23) becomes
+\begin{equation}
+\begin{split}
+\dot{a}^{2} &= AC_{0}a^{-2}+B\\
+\Rightarrow \dot{a} &= \sqrt{\frac{AC_{0}+Ba^{2}}{a^{2}}}\\
+\Rightarrow \int\sqrt{\frac{a^{2}}{AC_{0}+Ba^{2}}}da &= \int ad\eta \\
+\Rightarrow \int\frac{1}{\sqrt{1+\frac{Ba^{2}}{AC_{0}}}}da &= \sqrt{AC_{0}}\int d\eta \\
+\end{split}
+\end{equation}
+Letting $u=\sqrt{\frac{B}{AC_{0}}}a$
+\begin{equation}
+\begin{split}
+\int\frac{1}{\sqrt{1+\frac{Ba^{2}}{AC_{0}}}}da &= \sqrt{AC_{0}}\int d\eta \\
+\Rightarrow \int\frac{1}{\sqrt{1+u^{2}}}du &= \sqrt{B}\int d\eta \\
+\Rightarrow \sinh^{-1}u &= \sqrt{B}\brac{\eta-\eta_{0}} \\
+\Rightarrow u &= \sinh\brac{\sqrt{B}\brac{\eta-\eta_{0}}} \\
+\Rightarrow a &= \sqrt{AC_{0}}\sinh\brac{\sqrt{B}\brac{\eta-\eta_{0}}} \\
+\end{split}
+\end{equation}
+from which follows 
+\begin{equation}
+\begin{split}
+\int dt &= \int ad\eta\\
+\int dt &= \int \sqrt{AC_{0}}\sinh\brac{\sqrt{B}\brac{\eta-\eta_{0}}} d\eta\\
+t-t_{0} &= \sqrt{\frac{AC_{0}}{B}}\cosh\brac{\sqrt{B}\brac{\eta-\eta_{0}}}\\
+\end{split}
+\end{equation}
+from which follows
+\begin{equation}
+\begin{split}
+a &= \sqrt{AC_{0}}\sinh\brac{\sqrt{B}\brac{\eta}} \\
+t &= \sqrt{\frac{AC_{0}}{B}}\cosh\brac{\sqrt{B}\brac{\eta}}
+\end{split}
+\end{equation}
+\paragraph*{For dark energy dominated epoch}
+For dark energy dominated epochs $\epsilon=C_{0}$, from which follows that equation (23) becomes
+\begin{equation}
+\begin{split}
+\dot{a}^{2} &= AC_{0}a^{2}+B\\
+\Rightarrow \dot{a} &= \sqrt{B}\sqrt{\frac{AC_{0}a^{2}}{B}+1}\\
+\Rightarrow \int\frac{1}{\sqrt{\frac{AC_{0}a^{2}}{B}+1}}da &= \sqrt{B}\int ad\eta \\
+\Rightarrow \int\frac{1}{a\sqrt{\frac{AC_{0}a^{2}}{B}+1}}da &= \sqrt{B}\brac{\eta-\eta_{0}} \\
+\end{split}
+\end{equation}
+letting $u=\sqrt{\frac{AC_{0}}{B}}a$
+\begin{equation}
+\begin{split}
+\int\frac{1}{a\sqrt{\frac{AC_{0}a^{2}}{B}+1}}da &= \sqrt{B}\brac{\eta-\eta_{0}} \\
+\Rightarrow \int\frac{1}{u\sqrt{u^{2}+1}}du &= \sqrt{B}\brac{\eta-\eta_{0}} \\
+\Rightarrow -ln\brac{u^{-1}+\sqrt{u^{-2}+1}} &= \sqrt{B}\brac{\eta-\eta_{0}} \\
+\Rightarrow \sinh^{-1}u^{-1} &= -\sqrt{B}\brac{\eta-\eta_{0}} \\
+\Rightarrow u^{-1} &= \sinh-\sqrt{B}\brac{\eta-\eta_{0}} \\
+\Rightarrow u &= -\csch\sqrt{B}\brac{\eta-\eta_{0}} \\
+\Rightarrow a &= -\sqrt{\frac{B}{AC_{0}}}\csch\sqrt{B}\brac{\eta-\eta_{0}} \\
+\end{split}
+\end{equation}
+substituting this back into the conformal time parametrization gives
+\begin{equation}
+\begin{split}
+\int dt &= \int ad\eta\\
+\int dt &= -\int\sqrt{\frac{B}{AC_{0}}}\csch\sqrt{B}\brac{\eta-\eta_{0}} d\eta\\
+t-t_{0} &= -\sqrt{\frac{1}{AC_{0}}}ln\left|\tanh\frac{\sqrt{B}}{2}\brac{\eta-\eta_{0}}\right| \\
+\end{split}
+\end{equation}
+From which follows
+\begin{equation}
+\begin{split}
+a &= -\sqrt{\frac{B}{AC_{0}}}\csch\sqrt{B}\brac{\eta} \\
+t &= -\sqrt{\frac{1}{AC_{0}}}ln\left|\tanh\frac{\sqrt{B}}{2}\brac{\eta}\right| \\
+\end{split}
+\end{equation}
+\section*{Appendix B - Caplygin gas}
+\subsection*{Solving the fluid equation}
+Using the Equation of state for the generalized modified Chaplygin gas:
+\begin{equation}\label{eq:B1}
+\begin{split}
+P &=A_{1}\rho-\frac{A_{2}}{\rho^{\alpha}},         \\
+\end{split}
+\end{equation}
+the fluid equation,
+\begin{equation}\label{eq:B2}
+\begin{split}
+\dot{\rho}+3H\brac{\rho+P} &= 0,        \\
+\end{split}
+\end{equation}
+becomes:
+\begin{equation}\label{eq:B3}
+\begin{split}
+\dot{\rho}+3H\brac{\rho+\brac{A_{1}\rho-\frac{A_{2}}{\rho^{\alpha}}}} &= 0 \\
+\dot{\rho}+3H\brac{\brac{1+A_{1}}\rho-\frac{A_{2}}{\rho^{\alpha}}} &= 0 \\
+\rho^{\alpha}\dot{\rho}+3H\brac{\brac{1+A_{1}}\rho^{\alpha+1}-A_{2}} &= 0 \\
+\int\frac{\rho^{\alpha}}{\brac{\brac{1+A_{1}}\rho^{\alpha+1}-A_{2}}}d\rho&=-\int3Hdt\\
+\frac{1}{\brac{\alpha+1}\brac{1+A_{1}}}\ln\left|\brac{\brac{1+A_{1}}\rho^{\alpha+1}-A_{2}}\right|&=-3\int\frac{\dot{a}}{a}dt\\
+\frac{1}{\brac{\alpha+1}\brac{1+A_{1}}}\ln\left|\brac{\brac{1+A_{1}}\rho^{\alpha+1}-A_{2}}\right|&=-3\ln a+c_{1}\\
+\brac{\brac{1+A_{1}}\rho^{\alpha+1}-A_{2}}&=c_{2}a^{-3\brac{\alpha+1}\brac{1+A_{1}}}\\
+\rho^{\alpha+1}&=\frac{c_{2}a^{-3\brac{\alpha+1}\brac{1+A_{1}}}+A_{2}}{\brac{1+A_{1}}}\\
+\rho&=\brac{\frac{c_{2}a^{-3\brac{\alpha+1}\brac{1+A_{1}}}+A_{2}}{\brac{1+A_{1}}}}^{\frac{1}{\alpha+1}}.\\
+\end{split}
+\end{equation}
+For $A_{1}=0$ this reduces to the solution for the generalized Chaplygin gas. For $A_{1}=0$ and $\alpha=1$ this reduces to the ordinary Chaplygin gas.
+For the ordinary Chaplygin gas:
+\begin{equation}\label{eq:B4}
+\begin{split}
+\rho&=\brac{c_{2}a^{-6}+A_{2}}^{\frac{1}{2}},\\
+\end{split}
+\end{equation}
+if we consider large values of $a\ \brac{a>>1}$, the constant term in equation (\ref{eq:B4}) dominates and the Chaplygin gas reduces to the the energy density of the cosmological constant, with $\Lambda=\sqrt{A_{2}}$. Considering small values of $a\ \brac{a<<1}$ the non-constant term in equation (\ref{eq:B4}) dominates and the Chaplygin gas reduces to the the energy density of dust $\rho=c_{3}a^{-3}$.
+\subsection*{Attempting to solve the Friedman equation for Chaplygin gas analytically}
+From the results of equation (\ref{eq:B3}), we have:
+\begin{equation}\label{eq:B5}
+\begin{split}
+\rho&=\brac{\frac{c_{2}a^{-3\brac{\alpha+1}\brac{1+A_{1}}}+A_{2}}{\brac{1+A_{1}}}}^{\frac{1}{\alpha+1}}\\
+&=\brac{B_{3}a^{-3\brac{\beta}\brac{B_{1}}}+B_{2}}^{\frac{1}{\beta}}\\
+\end{split}
+\end{equation}
+where $\beta=\alpha+1$, $B_{1}=1+A_{1}$, $B_{2}=\frac{A_{2}}{1+A_{1}}$ and $B_{3}=\frac{c_{2}}{1+A_{1}}$. Substituting this into the Friedman equation (\ref{eq:CurvFriedman}) gives:
+\begin{equation}\label{eq:B6}
+\begin{split}
+\dot{a}^{2} &= A\rho a^{2}-\kappa F\\
+&= A\brac{B_{3}a^{-3\beta B_{1}}+B_{2}}^{\frac{1}{\beta}} a^{2}-\kappa F.\\
+\end{split}
+\end{equation}
+
+\paragraph{For flat curvature ($k=0$)}
+Equation (\ref{eq:B6}) becomes and can be rewritten as:
+\begin{equation}\label{eq:B7}
+\begin{split}
+\dot{a}^{2} &= A\brac{B_{3}a^{-3\beta B_{1}}+B_{2}}^{\frac{1}{\beta}} a^{2}\\
+\Rightarrow \dot{a} &= A^{\frac{1}{2}}\brac{B_{3}a^{-3\beta B_{1}}+B_{2}}^{\frac{1}{2\beta}} a\\
+\end{split}
+\end{equation}
+Setting 
+\begin{equation}\label{eq:B8}
+\begin{split}
+a&=\brac{\frac{B_{2}}{B_{3}}}^{-\frac{1}{3B_{1}\beta}}e^{\frac{u}{B_{1}\beta}},\\
+\end{split}
+\end{equation}
+we have that 
+\begin{equation}\label{eq:B9}
+\begin{split}
+\dot{a}&=\frac{1}{B_{1}\beta}\brac{\frac{B_{2}}{B_{3}}}^{-\frac{1}{3B_{1}\beta}}e^{\frac{u}{B_{1}\beta}}\dv{u}{t}.\\
+\end{split}
+\end{equation}
+Substituting (\ref{eq:B9}) and (\ref{eq:B8}) into equation (\ref{eq:B7}), we have:
+\begin{equation}\label{eq:B10}
+\begin{split}
+\frac{1}{B_{1}\beta}\brac{\frac{B_{2}}{B_{3}}}^{-\frac{1}{3B_{1}\beta}}e^{\frac{u}{B_{1}\beta}}\dv{u}{t} &= A^{\frac{1}{2}}B_{2}^{\frac{1}{2\beta}}\brac{e^{-3u}+1}^{\frac{1}{2\beta}} \brac{\frac{B_{2}}{B_{3}}}^{-\frac{1}{3B_{1}\beta}}e^{\frac{u}{B_{1}\beta}}\\
+\Rightarrow \frac{1}{B_{1}\beta}\dv{u}{t} &= A^{\frac{1}{2}}B_{2}^{\frac{1}{2\beta}}\brac{e^{-3u}+1}^{\frac{1}{2\beta}} \\
+\Rightarrow \dv{u}{t} &= A^{\frac{1}{2}}B_{2}^{\frac{1}{2\beta}}B_{1}\beta\brac{e^{-3u}+1}^{\frac{1}{2\beta}} \\
+\Rightarrow\int \brac{e^{-3u}+1}^{-\frac{1}{2\beta}} du&= A^{\frac{1}{2}}B_{2}^{\frac{1}{2\beta}}B_{1}\beta \int dt \\
+\end{split}
+\end{equation}
+Let $z=\brac{e^{-3u}+1}^{-\frac{1}{2\beta}}$, then $\brac{e^{-3u}+1}^{-\frac{1}{2\beta}}du=\frac{2\beta}{3}\brac{1-z^{2\beta}}^{-1}dz$ from which follows that equation (\ref{eq:B10}) becomes:
+\begin{equation}\label{eq:B11}
+\begin{split}
+\int \brac{1-z^{2\beta}}^{-1}dz&= \frac{3}{2}A^{\frac{1}{2}}B_{2}^{\frac{1}{2\beta}}B_{1} \int dt \\
+\end{split}
+\end{equation}
+Letting $L=z^{\beta}$, $\frac{1}{\beta}L^{\frac{1}{\beta}-1}dL=dz$, from which follows that :
+\begin{equation}\label{eq:B12}
+\begin{split}
+\int \frac{L^{\frac{1}{\beta}-1}dL}{1-L^{2}}&= \frac{3}{2}\beta A^{\frac{1}{2}}B_{2}^{\frac{1}{2\beta}}B_{1} \int dt \\
+\Rightarrow\frac{3}{2}\beta A^{\frac{1}{2}}B_{2}^{\frac{1}{2\beta}}B_{1}\brac{t-t_{0}}&=\frac{\beta L^{\frac{1}{\beta}}}{2\beta+1}\brac{L^{2}\ _{2}F_{1}\brac{1,1+\frac{1}{2\beta};2+\frac{1}{2\beta};L^{2}}+2\beta+1}\\
+\Rightarrow\frac{3}{2}A^{\frac{1}{2}}B_{2}^{\frac{1}{2\beta}}B_{1}\brac{t-t_{0}}&={L^{\frac{1}{\beta}}}+\frac{1}{2\beta+1}L^{2+\frac{1}{\beta}}\ _{2}F_{1}\brac{1,1+\frac{1}{2\beta};2+\frac{1}{2\beta};L^{2}}\\
+\Rightarrow\frac{3}{2}A^{\frac{1}{2}}B_{2}^{\frac{1}{2\beta}}B_{1}\brac{t-t_{0}}&=\brac{\frac{B_{3}}{B_{2}}a^{-3B_{1}\beta}+1}^{-\frac{1}{2\beta}}\\
++\frac{1}{2\beta+1}&\brac{\frac{B_{3}}{B_{2}}a^{-3B_{1}\beta}+1}^{-1-\frac{1}{2\beta}}\ _{2}F_{1}\brac{1,1+\frac{1}{2\beta};2+\frac{1}{2\beta};\brac{\frac{B_{3}}{B_{2}}a^{-3B_{1}\beta}+1}^{-1}}\\
+\end{split}
+\end{equation}
+
+%Substituting the results of equation (\ref{eq:B3}) into equation (\ref{eq:CurvFriedman}), letting $\alpha+1=\beta$ and $A_{1}=0$ we have
+%\begin{equation}\label{eq:B5}
+%\begin{split}
+%\dot{a}^{2} &= D\rho a^{2}-kF        \\
+%\dot{a}^{2} &= D\brac{c_{2}a^{-3\beta }+A_{2}}^{\frac{1}{\beta}}a^{2}-kF        \\
+%\dot{a} &= \brac{D\brac{c_{2}a^{-3\beta }+A_{2}}^{\frac{1}{\beta}}a^{2}-kF }^{\frac{1}{2}}       \\
+%\int\brac{D\brac{c_{2}a^{-3\beta }+A_{2}}^{\frac{1}{\beta}}a^{2}-kF }^{-\frac{1}{2}}da &= \int dt\\
+%\end{split}
+%\end{equation}
+%Based on the same principle as using the conformal time parametrization, we use the following parametrization:
+%\begin{equation}\label{eq:B6}
+%\begin{split}
+%\int dt &= \int\frac{d\eta}{f(a)},        \\
+%\end{split}
+%\end{equation}
+%with 
+%\begin{equation}\label{eq:B7}
+%\begin{split}
+%f(a) &= \dv{a}\brac{\brac{D\brac{c_{2}a^{-3\beta }+A_{2}}^{\frac{1}{\beta}}a^{2}-kF }^{-\frac{1}{2}}}        \\
+%\end{split}
+%\end{equation}
+%then 
+%\begin{equation}\label{eq:B8}
+%\begin{split}
+%\ln\left|\brac{D\brac{c_{2}a^{-3\beta }+A_{2}}^{\frac{1}{\beta}}a^{2}-kF }^{\frac{1}{2}}\right| &=  \int d\eta      \\
+%\brac{D\brac{c_{2}a^{-3\beta A}+A_{2}}^{\frac{1}{\beta}}a^{2}-kF } &=  c_{3}e^{2\eta}      \\
+%\brac{c_{2}a^{-3\beta }+A_{2}}^{\frac{1}{\beta}}a^{2}  &=  \brac{c_{3}e^{2\eta}+kF}D^{-1}    \\
+%\brac{c_{2}a^{-\beta }+a^{2\beta}A_{2}}^{\frac{1}{\beta}}  &=  \brac{c_{3}e^{2\eta}+kF}D^{-1}    \\
+%c_{2}a^{-\beta }+a^{2\beta}A_{2}  &=  \brac{\brac{c_{3}e^{2\eta}+kF}D^{-1}}^{\beta}    \\
+%a^{3\beta}  &=  \frac{\brac{\brac{c_{3}e^{2\eta}+kF}D^{-1}}^{\beta}a^{\beta}-c_{2}}{A_{2}}    \\
+%\end{split}
+%\end{equation}
+
+\subsection*{Numerical approach to solving the Friedman equation for Chaplygin gas}
+Plotting $t$ as a function of $a$, as follows
+\begin{equation}\label{eq:B9}
+\begin{split}
+t &= \int_{a=1}^{a'}\brac{D\brac{c_{2}a^{-3\beta }+A_{2}}^{\frac{1}{\beta}}a^{2}-kF }^{-\frac{1}{2}}da, \\
+\end{split}
+\end{equation}
+for $a=[1,100]$.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=1]{Figures/CaplyginGasWithoutConstants.jpg}
+\caption{Numerical approach for constants normalized to 1. The curvature term is negligible in the solutions. }
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=1]{Figures/CaplyginGasWithConstants.jpg}
+\caption{Numerical approach for constants added. For positive curvature, the integral becomes imaginary.}
+\end{figure}
+
+\subsection*{Abstract}
+Dark energy and dark matter account for nearly 95\% of the matter-energy content of the universe, yet very little is known about both dark energy and dark matter. We aim to look at the impact of unifying Dark energy and Dark matter into a single Dark fluid Equation of state and solving the Friedman equations for such a fluid. The first candidate that is looked at is the Chaplygin gas Equation of state. The behaviour of the expansion coefficient is looked at for different epochs. The Friedman equations are also solved for a pure dark fluid parametrization Equation of state and the behaviour of the accelerated expansion for this equation of state is investigated. 
+
+
+%\citep{notes4}
+%\bibliographystyle{./References/agu}                               
+\bibliographystyle{unsrt}                               
+\bibliography{./References/References} 
+\pagenumbering{gobble}                            
+\pagebreak
+
+%\lstinputlisting[language=Python, firstline=1, lastline=27, caption=Python example]{Densities.py}
+
+\end{document}  

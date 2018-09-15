@@ -1,0 +1,155 @@
+\documentclass[a4paper, 11pt]{FSKH_623_Report} 
+
+\title{Equation of state}                                                                      
+\problemnumber{}                                             
+\author{Pieter vd Merwe}                                         
+\studentnumber{25957937}                                           
+\date{\today}  
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{xfrac}
+\usepackage{esvect}
+\usepackage{varwidth} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\driv}[2]{\frac{d #1}{d #2}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                        
+
+\begin{document}
+
+\maketitle
+
+\pagenumbering{gobble}                                             
+\tableofcontents                                                  
+\pagebreak
+\pagenumbering{arabic}
+
+\section{Equation of State from Newtonian Mechanics}
+
+From the first law of thermodynamics we have that  
+\begin{equation}
+\begin{split}
+dE &= -PdV + dQ\\
+\end{split}
+\end{equation}
+With $dE$ the change in energy content, $P$ the pressure, $dV$ the change in volume and $dQ$ the change in heat.
+Considering an Isotropic and homogeneous universe \citep{notes4},the expansion of the universe will be adiabatic with the Pressure $P$ constant and there will be no change in the heat ($Q$) content of the universe since there is nowhere for the heat to come from \citep{notes4}. From this we can then conclude that the $dQ$ term in equation 1 will be $dQ=0$ and reduces to.
+\begin{equation}
+\begin{split}
+dE &= -PdV \\
+\end{split}
+\end{equation}
+this impies that
+\begin{equation}
+\begin{split}
+E(t) &= -PV(t)\\
+\Rightarrow \dot{E} &= \frac{d\left(-PV\right)}{dt}\\
+&= -\driv{P}{t}V-P\driv{V}{t}\\
+&= -P\driv{V}{t}             \\
+\end{split}
+\end{equation}
+since $P$ is a constant.
+We have that for M the total mass and c the speed of light 
+\begin{equation}
+\begin{split}
+V &= \frac{4\pi}{3}r^{3}\\
+E &= Mc^{2}\\
+&=\frac{4\pi}{3}c^{2}r^{3}\rho\\
+\end{split}
+\end{equation}
+where $\rho$ is the mass density as a function of time.
+If we now consider a expanding universe where the relative motion of galaxies are not due to intrinsic peculiar velocities, but to the expansion of the universe then we can write $r$ as $r=a(t)\chi$ where $\chi$ is the actual distance between the two points (galaxies) and $a(t)$ the expansion parameter defined so that $a(t)=1$ at the present time. Equations 4 then becomes
+\begin{equation}
+\begin{split}
+V &= \frac{4\pi}{3}a^{3}\chi^{3}\\
+E &= Mc^{2}\\
+&=\frac{4\pi}{3}c^{2}a^{3}\chi^{3}\rho\\
+\end{split}
+\end{equation}
+From this then follows that
+\begin{equation}
+\begin{split}
+\dot{V} &= 4\pi\chi^{3}a^{2}\dot{a}\\
+\end{split}
+\end{equation}
+and
+\begin{equation}
+\begin{split}
+\dot{E} &= \frac{4\pi\chi^{3} c^{2}}{3}\left(3a^{2}\dot{a}\rho+\dot{\rho}a^{3}\right)\\
+\end{split}
+\end{equation}
+Substituting this back into equation 3 yields
+\begin{equation}
+\begin{split}
+\frac{4\pi\chi^{3} c^{2}}{3}\left(3a^{2}\dot{a}\rho+\dot{\rho}a^{3}\right) &= -P4\pi\chi^{3}a^{2}\dot{a}\\
+\Rightarrow \dot{\rho}+3\frac{\dot{a}}{a}\rho+3P\frac{\dot{a}}{a} &= 0\\
+\Rightarrow \dot{\rho}+3\frac{\dot{a}}{a}\left(\rho+P\right) &= 0\\
+\Rightarrow \dot{\rho}+3H\left(\rho+P\right) &= 0\\
+\end{split}
+\end{equation}
+Where $H$ is the Hubble parameter.
+If we now let $P=\rho\omega$, where $\omega$ can be a function of time, in such a way that P remains a constant.
+then equation 8 becomes
+\begin{equation}
+\begin{split}
+\dot{\rho}+3H\left(\rho+\rho\omega\right) &= 0\\
+\dot{\rho}+3H\left(1+\omega\right)\rho &= 0\\
+\end{split}
+\end{equation}
+We can solve this ODE 
+\begin{equation}
+\begin{split}
+\dot{\rho}+3H\left(1+\omega\right)\rho &= 0\\
+\Rightarrow \frac{\dot{\rho}}{\rho} &= -3H\left(1+\omega\right)\\
+\Rightarrow \frac{\dot{\rho}}{\rho} &= -3\left(1+\omega\right)\frac{\dot{a}}{a}\\
+\Rightarrow ln(\rho) &= -3\left(1+\omega\right)ln(a) + k\\
+\Rightarrow \rho &= Ca^{-3\left(1+\omega\right)}
+\end{split}
+\end{equation}
+with $C$ and $k$ constants.
+For matter $\omega=0$, for radiation $\omega=\frac{1}{3}$ and for the cosmological constant $\omega=-1$ \citep{notes4}. From this then follows that for matter 
+\begin{equation}
+\begin{split}
+\rho &= Ca^{-3}\\
+\end{split}
+\end{equation}
+for radiation
+\begin{equation}
+\begin{split}
+\rho &= Ca^{-4}\\
+\end{split}
+\end{equation}
+and for the cosmological constant
+\begin{equation}
+\begin{split}
+\rho &= C\\
+\end{split}
+\end{equation}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\citep{notes4}
+\bibliographystyle{./References/agu}                               
+\bibliography{./References/References} 
+\pagenumbering{gobble}                            
+\pagebreak
+
+%\lstinputlisting[language=Python, firstline=1, lastline=27, caption=Python example]{Densities.py}
+
+\end{document}  

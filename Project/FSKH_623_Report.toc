@@ -1,0 +1,15 @@
+\contentsline {chapter}{\numberline {1}Cosmology}{1}{chapter.1}
+\contentsline {section}{\numberline {1}Introduction}{1}{section.2}
+\contentsline {section}{\numberline {2}Newtonian cosmology}{1}{section.3}
+\contentsline {section}{\numberline {3}General Relativity (GR)}{1}{section.4}
+\contentsline {section}{\numberline {4}The expanding universe}{2}{section.5}
+\contentsline {section}{\numberline {5}The Concordance model ($\Lambda $CDM-model)}{3}{section.6}
+\contentsline {subsection}{\numberline {5.1}Fluid equation from Newtonian Mechanics}{3}{subsection.7}
+\contentsline {subsection}{\numberline {5.2}The Friedman equation}{4}{subsection.20}
+\contentsline {subsection}{\numberline {5.3}The Raychaudhuri Equation}{4}{subsection.24}
+\contentsline {subsection}{\numberline {5.4}Solving the Friedman equation for different epochs and curvatures}{4}{subsection.26}
+\contentsline {subsubsection}{Solving for Matter dominated Epochs}{5}{equation.27}
+\contentsline {subsubsection}{Solving for Radiation dominated Epochs}{5}{equation.27}
+\contentsline {subsubsection}{Solving for Dark Energy dominated Epochs}{5}{equation.27}
+\contentsline {section}{\numberline {6}Shortcomings of the Concordance model and New propositions}{5}{section.29}
+\contentsline {chapter}{\numberline {2}Appendices}{7}{chapter.30}

@@ -1,0 +1,24 @@
+https://uncw.edu/phy/documents/TheFriedmannEquations.pdf
+http://nicadd.niu.edu/~bterzic/PHYS652/Lecture_05.pdf
+http://www.astronomy.ohio-state.edu/~dhw/A5682/notes5.pdf
+@book{book:15273,
+   title =     {An Introduction to Tensor Calculus, Relativity, and Cosmology},
+   author =    {Derek F. Lawden, D. F. Lawden},
+   publisher = {Wiley},
+   isbn =      {047110082X,9780471100829,0486425401,9780486425405,047110082X-:,047110096X},
+   year =      {1982},
+   series =    {},
+   edition =   {3rd ed},
+   volume =    {},
+   url =       {http://gen.lib.rus.ec/book/index.php?md5=E0EFF84575AEDC7F2BCFDE5B69900586}}
+
+@book{book:15504,
+   title =     {Introduction to cosmology},
+   author =    {Barbara Ryden},
+   publisher = {Addison-Wesley},
+   isbn =      {0805389121,9780805389128},
+   year =      {2003},
+   series =    {},
+   edition =   {},
+   volume =    {},
+   url =       {http://gen.lib.rus.ec/book/index.php?md5=8738A0BFA6E4A2977FDC19E67E128D45}}
