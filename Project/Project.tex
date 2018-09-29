@@ -293,7 +293,7 @@ P &= -\frac{A_{1}}{\rho^{\alpha}},\ \ \ \ \alpha>-1,         \\
 \item Modified Chaplygin gas (MCG):
 \begin{equation}\label{eq:MCG}
 \begin{split}
-P &=A_{2}\rho -\frac{A_{2}}{\rho^{\alpha}},\ \ \ \ \alpha>-1,         \\
+P &=A_{2}\rho -\frac{A_{1}}{\rho^{\alpha}},\ \ \ \ \alpha>-1,         \\
 \end{split}
 \end{equation}
 \end{itemize}
@@ -310,14 +310,14 @@ Solving this first order differential equation, we find that:
 \begin{equation}\label{eq:FMCG}
 \begin{split}
 \rho&=\brac{\frac{c_{2}a^{-3\brac{\alpha+1}\brac{1+A_{2}}}+A_{1}}{\brac{1+A_{2}}}}^{\frac{1}{\alpha+1}}.\\ \end{split} \end{equation} 
-For $A_{1}=0$ this reduces to the solution for the generalized Chaplygin gas. For $A_{1}=0$ and $\alpha=1$ this reduces to the ordinary Chaplygin gas.
+For $A_{2}=0$ this reduces to the solution for the generalized Chaplygin gas. For $A_{2}=0$ and $\alpha=1$ this reduces to the ordinary Chaplygin gas.
 For the ordinary Chaplygin gas:
 \begin{equation}\label{eq:OCGRH}
 \begin{split}
 \rho&=\brac{c_{2}a^{-6}+A_{1}}^{\frac{1}{2}}.\\
 \end{split}
 \end{equation}
-If we consider large values of $a\ \brac{a>>1}$, the constant term in equation (\ref{eq:OCGRH}) dominates and the Chaplygin gas reduces to the the energy density of the cosmological constant, with $\Lambda=\sqrt{A_{2}}$. Considering small values of $a\ \brac{a<<1}$ the non-constant term in equation (\ref{eq:OCGRH}) dominates and the Chaplygin gas reduces to the the energy density of dust $\rho=c_{3}a^{-3}$.
+If we consider large values of $a\ \brac{a>>1}$, the constant term in equation (\ref{eq:OCGRH}) dominates and the Chaplygin gas reduces to the the energy density of the cosmological constant, with $\Lambda=\sqrt{A_{1}}$. Considering small values of $a\ \brac{a<<1}$ the non-constant term in equation (\ref{eq:OCGRH}) dominates and the Chaplygin gas reduces to the the energy density of dust $\rho=c_{3}a^{-3}$.
 
 \section{Solving the Friedman equation for the MCG and\\ flat curvature}
 Rewriting the results of equation (\ref{eq:FMCG}), we have:
@@ -326,7 +326,7 @@ Rewriting the results of equation (\ref{eq:FMCG}), we have:
 \rho&=\brac{B_{3}a^{-3\brac{\beta}\brac{B_{1}}}+B_{2}}^{\frac{1}{\beta}}\\
 \end{split}
 \end{equation}
-where $\beta=\alpha+1$, $B_{1}=1+A_{1}$, $B_{2}=\frac{A_{2}}{1+A_{1}}$ and $B_{3}=\frac{c_{2}}{1+A_{1}}$. Substituting this into the Friedman equation (\ref{eq:CurvFriedman}) gives:
+where $\beta=\alpha+1$, $B_{1}=1+A_{2}$, $B_{2}=\frac{A_{1}}{1+A_{2}}$ and $B_{3}=\frac{c_{2}}{1+A_{2}}$. Substituting this into the Friedman equation (\ref{eq:CurvFriedman}) gives:
 \begin{equation}\label{eq:B6}
 \begin{split}
 \dot{a}^{2} &= A\rho a^{2}-\kappa F\\
@@ -906,16 +906,109 @@ for $a=[1,100]$.
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=1]{Figures/CaplyginGasWithoutConstants.jpg}
-\caption{Numerical approach for constants normalized to 1. The curvature term is negligible in the solutions. }
+\includegraphics[scale=1]{Figures/a_ch.jpg}
+\caption{ }
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=1]{Figures/CaplyginGasWithConstants.jpg}
-\caption{Numerical approach for constants added. For positive curvature, the integral becomes imaginary.}
+\includegraphics[scale=1]{Figures/ch_q.jpg}
+\caption{}
 \end{figure}
 
+\begin{figure}[H]
+\centering
+\includegraphics[scale=1]{Figures/ch_ddota.jpg}
+\caption{}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=1]{Figures/ch_H.jpg}
+\caption{}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=1]{Figures/ch_rho.jpg}
+\caption{}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=1]{Figures/z_ch.jpg}
+\caption{}
+\end{figure}
+
+\section*{Appendix C - UDF}
+Deriving the energy density using EoS:
+\begin{equation}\label{eq:UDFEoS}
+\begin{split}
+P(a) &= P_{a}+P_{b}\brac{a^{-1}-a}        \\
+\end{split}
+\end{equation}
+Inserting this into the fluid equation gives
+\begin{equation}\label{eq:UDFED}
+\begin{split}
+\dot{\rho} &= -3\brac{\frac{\dot{a}}{a}}\brac{\rho+P_{a}+P_{b}\brac{a^{-1}-a}} \\
+a^{3}\dot{\rho} &= -3a^{2}\dot{a}\brac{\rho+P_{a}+P_{b}\brac{a^{-1}-a}} \\
+a^{3}\dot{\rho}+3a^{2}\dot{a}\rho &= -3a^{2}\dot{a}\brac{P_{a}+P_{b}\brac{a^{-1}-a}} \\
+\dv{t}\brac{a^{3}\rho}&= -3a^{2}\dot{a}\brac{P_{a}+P_{b}\brac{a^{-1}-a}} \\
+\dv{t}\brac{a^{3}\rho}&= -\dv{t}\brac{P_{a}a^{3}+\frac{3}{4}P_{b}\brac{2a^{2}-a^{4}}} \\
+a^{3}\rho&= -\brac{P_{a}a^{3}+\frac{3}{4}P_{b}\brac{2a^{2}-a^{4}}}+C \\
+\rho&= -P_{a}+\frac{3}{4}P_{b}\brac{a-2a^{-1}}+Ca^{-3}. \\
+\end{split}
+\end{equation}
+Substituting this into the Friedman equation gives:
+\begin{equation}\label{eq:UDFFEQ}
+\begin{split}
+\dot{a}^{2} &= A\rho a^{2}-kB        \\
+\dot{a}^{2} &= Aa^{2}\brac{-P_{a}+\frac{3}{4}P_{b}\brac{a-2a^{-1}}+Ca^{-3}}-kB\\
+\dot{a}^{2} &= A\brac{-P_{a}a^{2}+\frac{3}{4}P_{b}\brac{a^{3}-2a^{1}}+Ca^{-1}}-kB\\
+\Rightarrow \dot{a} &= \sqrt{A\brac{-P_{a}a^{2}+\frac{3}{4}P_{b}\brac{a^{3}-2a^{1}}+Ca^{-1}}-kB} \\
+\Rightarrow t-t_{0} &= \int \frac{da}{\sqrt{A\brac{-P_{a}a^{2}+\frac{3}{4}P_{b}\brac{a^{3}-2a^{1}}+Ca^{-1}}-kB}} \\
+\end{split}
+\end{equation}
+Integrating this with the same method as the Chaplygin gas for the three different curvatures gives:
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=1]{Figures/UDF_a_vs_t.jpg}
+\caption{ }
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=1]{Figures/UDF_q.jpg}
+\caption{}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=1]{Figures/UDF_addot.jpg}
+\caption{}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=1]{Figures/UDF_H.jpg}
+\caption{}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=1]{Figures/UDF_rho.jpg}
+\caption{}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=1]{Figures/UDF_z_vs_t.jpg}
+\caption{}
+\end{figure}
+
+
+\pagebreak
 \subsection*{Abstract}
 Dark energy and dark matter account for nearly 95\% of the matter-energy content of the universe, yet very little is known about both dark energy and dark matter. We aim to look at the impact of unifying Dark energy and Dark matter into a single Dark fluid Equation of state and solving the Friedman equations for such a fluid. The first candidate that is looked at is the Chaplygin gas Equation of state. The behaviour of the expansion coefficient is looked at for different epochs. The Friedman equations are also solved for a pure dark fluid parametrization Equation of state and the behaviour of the accelerated expansion for this equation of state is investigated. 
 
