@@ -1,4 +1,4 @@
- \documentclass[a4paper, 11pt]{FSKH_623_Report} 
+\documentclass[a4paper, 11pt]{FSKH_623_Report} 
 
 \title{Solving the Friedman equation for Dark Fluid equation of state.}                                                                      
 \problemnumber{}                                             
@@ -40,6 +40,7 @@
 \newcommand{\driv}[2]{\frac{d #1}{d #2}}
 \newcommand{\con}{\frac{8\pi}{3}G}
 \newcommand{\brac}[1]{\left(#1\right)}
+\newcommand{\bracc}[1]{\left[#1\right]}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                        
 
 \begin{document}
@@ -124,12 +125,12 @@ Substituting this back into equation (\ref{eq:3}) yields
 \dot{\rho}+3H\left(\rho+P\right) &= 0\\
 \end{split}
 \end{equation}
-Where $H$ is the Hubble parameter.
+Where $H\equiv\frac{\dot{a}}{a}$ is the Hubble parameter.
 If we now use the equation of state for a perfect fluid: $P=\rho\omega$, where $\omega$ can be a function of time, in such a way that P remains a constant.
 then equation (\ref{eq:4}) becomes
 \begin{equation}\label{eq:6}
 \begin{split}
-\dot{\rho}+3H\left(1+\omega\right)\rho &= 0\\
+\dot{\rho}+3H\left(1+\omega\right)\rho &= 0\\.
 \end{split}
 \end{equation}
 This ODE has a solution of the form  
@@ -139,27 +140,13 @@ This ODE has a solution of the form
 \end{split}
 \end{equation}
 with $C$ constant.
-For dust (matter) $\omega=0$, for radiation $\omega=\frac{1}{3}$ and for the cosmological constant $\omega=-1$ \citep{notes4, GRFD}. From this then follows that for matter, for radiation and the cosmological constant respectfully: 
-\begin{multicols}{3}
-\begin{equation}
-\begin{split}
-\rho &= C_{d}a^{-3}\\
-\end{split}
-\end{equation}
-
-\begin{equation}
-\begin{split}
-\rho &= C_{rad}a^{-4}\\
-\end{split}
-\end{equation}
-
-\begin{equation}
-\begin{split}
-\rho &= C_{DE}\\
-\end{split}
-\end{equation}
-\end{multicols}
-these solutions to the fluid equation as well as the fluid equation (\ref{eq:6}) agrees with what is expected from literature \citep{GRFD, ITC}. 
+For dust (matter) $\omega=0$, for radiation $\omega=\frac{1}{3}$ and for the cosmological constant $\omega=-1$ \citep{notes4, GRFD}. From this then follows that for matter $\rho = C_{d}a^{-3}$, for radiation $\rho = C_{rad}a^{-4}$ and the cosmological constant $\rho = C_{DE}$. 
+%\begin{equation}
+%\begin{split}
+%\rho = C_{d}a^{-3},\ \ \ \rho = C_{rad}a^{-4},\ \ \ \rho = C_{DE},\\
+%\end{split}
+%\end{equation}
+The given solutions to the fluid equation as well as the fluid equation (\ref{eq:6}) agrees with what is expected from literature \citep{GRFD, ITC}. 
 
 \subsection{The Friedman equation}
 Consider a isolated, isotropic sphere with mass $M$ and radius $r=a(t)\chi$, where $a(t)$ is the expansion coefficient and $\chi$ the distance between any two points in the sphere \citep{notes4}. From Newtons shell theorem \citep{IronShell}, objects (with mass $m$) on the surface of the sphere will experience the gravitational force due to the mass within the sphere as if all the mass is at the center of the shell. From this the equation of motion for points on the surface of the sphere can be found from Newton`s second law:
@@ -180,24 +167,30 @@ Where $U$ is an integration constant. Since we have that $M=\frac{4\pi}{3}r^{3}\
 \left(\frac{\dot{a}}{a}\right)^{2} &= \frac{8\pi}{3}G\rho+\frac{2U}{a^{2}\chi^{2}}\\
 \end{split}
 \end{equation}
-which is the expansion equation, with $\rho$ the mass-density.
+which is the Friedman equation, with $\rho$ the mass-density.
 \subsection{The Raychaudhuri Equation}
-From the result of the Expansion equation (\ref{eq:5}) and the Fluid Equation (\ref{eq:6}) the Acceleration equation can be found as:
-\begin{equation}
+From the result of the Friedman equation (\ref{eq:5}) and the Fluid Equation (\ref{eq:6}) the Raychaudhuri equation can be found as:
+\begin{equation}\label{eq:RayEq}
 \begin{split}
 \frac{\ddot{a}}{a} &= -\frac{4\pi}{3}G\left(\rho +3P\right)\\
 \end{split}
 \end{equation}
-where $P=\rho\omega$ is the pressure.
+where $P$ is the pressure. From this it is evident that for $\rho +3P > 0$, the universe will undergo a decelerating expansion and an accelerating expansion for the opposite case. We can also introduce a new parameter
+\begin{equation}\label{eq:Deceleration}
+\begin{split}
+q &\equiv -\frac{\ddot{a}a}{\dot{a}^{2}},     \\
+\end{split}
+\end{equation}
+known as the deceleration parameter.
 \subsection{Solving the Friedman equation for different epochs and curvatures}
 Equation (\ref{eq:5}) can be rewritten as \citep{notes4}
 \begin{equation}
 \begin{split}\label{eq:CurvFriedman}
-\dot{a}^{2} &= \frac{8\pi G}{3c^{2}}\epsilon a^{2}-\kappa\frac{c^{2}}{R_{0}^{2}}\\
-&= A\epsilon a^{2}-\kappa B\\
+\dot{a}^{2} &= \frac{8\pi G}{3c^{2}}\rho a^{2}-\kappa\frac{c^{2}}{\chi^{2}}\\
+&= A\rho a^{2}-\kappa B\\
 \end{split}
 \end{equation}
-with $\epsilon$ energy density, $\kappa$ curvature and $R_{0}$ the present value of curvature radius. Let curvature take the values $\kappa=-1$ for open space, $\kappa=1$ for closed space and $\kappa=0$ for flat space \citep{Curv}, then using the solutions to equation (\ref{eq:6}) the solutions to the Friedman equation (\ref{eq:5}) can be summarised as
+with $\rho$ energy density, $\kappa$ curvature and $\chi$ the present value of curvature radius. Let curvature take the values $\kappa=-1$ for open space, $\kappa=1$ for closed space and $\kappa=0$ for flat space \citep{Curv}, then using the solutions to equation (\ref{eq:6}) the solutions to the Friedman equation (\ref{eq:5}) can be summarised as
 %\pagebreak
 \subsubsection{Solving for Matter dominated Epochs}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -272,7 +265,7 @@ Though the Concordance model has been very successful thus far in the descriptio
 First among the above mention problems include The Horizon and Flatness problems. The Horizon problem Brings into question the assumption of homogeneity of the initial universe, as approximately $\backsim 10^{83}$ separate region of the universe are not casually connected \citep{IU}. The Flatness problem refers to the   energy-density $\rho$ of the universe that is observed to be very near to the critical density $\rho_{cr}=\frac{3H^{2}}{8\pi G}$ \citep{GRES, IU}. These problems as well as the The monopole problem in which the concordance predicts the existence of monopoles in quantities much larger that observed , are solved if one introduces an inflationary universe \citep{IU}. An inflationary universe describes a cosmology that undergoes a sudden inflation after the radiation dominated Epoch that occurs due to the expanding supercooling and then subsequently reheating of the primordial universe. The problem with such a cosmology is the difficulty of a finding a sufficiently smooth inflation that can be reconsiled with the concordance modal \citep{IU}.\\
 
 \chapter{Chaplygin gas}
-As stated in Chapter 1, observations of the luminosities of type Ia supernovae suggest that the universe is undergoing an accelerated expansion \citep{NPSNe, RMCGAU}, which suggests the existence of Dark Energy. One possible candidate for Dark Energy, which also aims to unify Dark energy and Dark matter, is a Chaplygin gas equation of state which has characteristics of a Matter dominated epoch for small values of the expansion coefficient and characteristics of a Dark Energy dominated epoch for larger values of the expansion coefficient.
+As stated in Chapter 1, observations of the luminosities of type Ia supernovae suggest that the universe is undergoing an accelerated expansion \citep{NPSNe, RMCGAU}, which suggests the existence of Dark Energy. One possible candidate for Dark Energy, which also aims to unify Dark energy and Dark matter, is a Chaplygin gas equation of state which has characteristics of a Matter dominated epoch for small values of the scale factor and characteristics of a Dark Energy dominated epoch for larger values of the expansion coefficient.
 
 \section{The modified Chaplygin gas equation of state}
 \renewcommand{\baselinestretch}{0.5}
@@ -298,7 +291,7 @@ P &=A_{2}\rho -\frac{A_{1}}{\rho^{\alpha}},\ \ \ \ \alpha>-1,         \\
 \end{equation}
 \end{itemize}
 \renewcommand{\baselinestretch}{1.3}
-where $A_{1},A_{2}$ and $\alpha$ are free parameters. The MCG reduces to the GCG for $A_{2}=0$, which in tern reduces to the OCG for $\alpha=1$.
+where $A_{1},A_{2}$ and $\alpha$ are free parameters. The MCG reduces to the GCG for $A_{2}=0$, which in turn reduces to the OCG for $\alpha=1$.
 \subsection*{Solving the fluid equation}
 Substituting the Equation of state for the MCG, equation (\ref{eq:MCG}), into the fluid equation (\ref{eq:4}) gives :
 \begin{equation}\label{eq:FMCG0}
@@ -309,30 +302,267 @@ Substituting the Equation of state for the MCG, equation (\ref{eq:MCG}), into th
 Solving this first order differential equation, we find that:
 \begin{equation}\label{eq:FMCG}
 \begin{split}
-\rho&=\brac{\frac{c_{2}a^{-3\brac{\alpha+1}\brac{1+A_{2}}}+A_{1}}{\brac{1+A_{2}}}}^{\frac{1}{\alpha+1}}.\\ \end{split} \end{equation} 
-For $A_{2}=0$ this reduces to the solution for the generalized Chaplygin gas. For $A_{2}=0$ and $\alpha=1$ this reduces to the ordinary Chaplygin gas.
-For the ordinary Chaplygin gas:
+\rho&=\brac{\frac{C_{2}a^{-3\brac{\alpha+1}\brac{1+A_{2}}}+A_{1}}{\brac{1+A_{2}}}}^{\frac{1}{\alpha+1}}.\\ 
+\end{split} 
+\end{equation} 
+For $A_{2}=0$ this reduces to the solution for the generalized Chaplygin gas. For $A_{2}=0$ and $\alpha=1$ this reduces to the solution for the ordinary Chaplygin gas:
 \begin{equation}\label{eq:OCGRH}
 \begin{split}
-\rho&=\brac{c_{2}a^{-6}+A_{1}}^{\frac{1}{2}}.\\
+\rho&=\brac{C_{2}a^{-6}+A_{1}}^{\frac{1}{2}}.\\
 \end{split}
 \end{equation}
-If we consider large values of $a\ \brac{a>>1}$, the constant term in equation (\ref{eq:OCGRH}) dominates and the Chaplygin gas reduces to the the energy density of the cosmological constant, with $\Lambda=\sqrt{A_{1}}$. Considering small values of $a\ \brac{a<<1}$ the non-constant term in equation (\ref{eq:OCGRH}) dominates and the Chaplygin gas reduces to the the energy density of dust $\rho=c_{3}a^{-3}$.
+If we consider large values of $a\ \brac{a>>1}$, the constant term in equation (\ref{eq:FMCG}) dominates and the Chaplygin gas reduces to the the energy density of the cosmological constant, with $\Lambda=\brac{\frac{A_{1}}{1+A_{2}}}^{\frac{1}{\alpha+1}}$. Considering small values of $a\ \brac{a<<1}$ the non-constant term in equation (\ref{eq:FMCG}) dominates and the Chaplygin gas reduces to the the energy density of dust $\rho=\brac{\frac{C_{2}}{1+A_{2}}}^{\frac{1}{1+\alpha}}a^{-3(1+A_{2})}$. Equation (\ref{eq:FMCG}) can be rewritten in terms of red-shift:
+\begin{equation}\label{eq:FMCGZ}
+\begin{split}
+\rho  &= \bracc{\frac{C_{2}\brac{1+z}^{3\brac{\alpha+1}\brac{1+A_{2}}}+A_{1}}{1+A_{2}}}^{\frac{1}{1+\alpha}},         \\
+\end{split}
+\end{equation}
+from which it is evident that for small red-shifts the energy density is approximately constant. The behaviour of equation (\ref{eq:FMCGZ}) can be seen in figure \ref{fig:ChRho}.
+	
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.65]{Figures/ch_rho.jpg}
+\caption{Here we have taken $A_{1}=50$ and $A_{2}=C_{2}=1$. }
+\label{fig:ChRho}
+\end{figure}
 
-\section{Solving the Friedman equation for the MCG and\\ flat curvature}
+\section{Solving the Friedman equation for the MCG}
 Rewriting the results of equation (\ref{eq:FMCG}), we have:
 \begin{equation}\label{eq:ReFMCG}
 \begin{split}
-\rho&=\brac{B_{3}a^{-3\brac{\beta}\brac{B_{1}}}+B_{2}}^{\frac{1}{\beta}}\\
+\rho&=\brac{B_{3}a^{-3\brac{\beta}\brac{B_{1}}}+B_{2}}^{\frac{1}{\beta}},\\
 \end{split}
 \end{equation}
-where $\beta=\alpha+1$, $B_{1}=1+A_{2}$, $B_{2}=\frac{A_{1}}{1+A_{2}}$ and $B_{3}=\frac{c_{2}}{1+A_{2}}$. Substituting this into the Friedman equation (\ref{eq:CurvFriedman}) gives:
-\begin{equation}\label{eq:B6}
+where $\beta=\alpha+1$, $B_{1}=1+A_{2}$, $B_{2}=\frac{A_{1}}{1+A_{2}}$ and $B_{3}=\frac{C_{2}}{1+A_{2}}$. Substituting this into the Friedman equation (\ref{eq:CurvFriedman}) gives:
+\begin{equation}\label{eq:UnSolFrCh}
 \begin{split}
 \dot{a}^{2} &= A\rho a^{2}-\kappa F\\
 &= A\brac{B_{3}a^{-3\beta B_{1}}+B_{2}}^{\frac{1}{\beta}} a^{2}-\kappa F.\\
 \end{split}
 \end{equation}
+Assuming, at first, a flat curvature ($\kappa=0$), we have that
+\begin{equation}\label{eq:MCGFFC}
+\begin{split}
+\dot{a}&= A^{\frac{1}{2}}\brac{B_{3}a^{-3\beta B_{1}}+B_{2}}^{\frac{1}{2\beta}} a.\\
+\end{split}
+\end{equation}
+Solving this first order, non-linear differential equation, we have:
+\begin{equation}\label{eq:FmEqMCGSol}
+\begin{split}
+\brac{t-t_{0}}&=\frac{2}{3A^{\frac{1}{2}}B_{2}^{\frac{1}{2\beta}}B_{1}}\brac{\frac{B_{3}}{B_{2}}a^{-3B_{1}\beta}+1}^{-\frac{1}{2\beta}}\\
++\frac{1}{2\beta+1}&\brac{\frac{B_{3}}{B_{2}}a^{-3B_{1}\beta}+1}^{-1-\frac{1}{2\beta}}\ _{2}F_{1}\brac{1,1+\frac{1}{2\beta};2+\frac{1}{2\beta};\brac{\frac{B_{3}}{B_{2}}a^{-3B_{1}\beta}+1}^{-1}},\\
+\end{split}
+\end{equation}
+where $_{2}F_{1}\brac{a,b;c;x}$ is the hyper geometric function. \\
+Due to the non-linearity and complexity of the differential equation, we do not solve equation (\ref{eq:UnSolFrCh}) analytically for non-flat curvatures, but instead take a numerical approach.
+Rewriting equation (\ref{eq:UnSolFrCh}), we have time ($t$) as a function of scale factor ($a$):
+\begin{equation}\label{eq:NumSolMCG}
+\begin{split}
+t(a) &= \int_{0}^{a'}\brac{A\brac{B_{3}a^{-3\beta B_{1}}+B_{2}}^{\frac{1}{\beta}} a^{2}-\kappa F}^{-\frac{1}{2}}da + t_{0}.        \\
+\end{split}
+\end{equation}   
+Numerically integrating the integral on the right hand side for $0<a'\leq 1$ in figure \ref{fig:ChScale}.
+\begin{figure}[H]
+\centering
+\includegraphics[scale=1]{Figures/a_ch.jpg}
+\caption{Here equation (\ref{eq:NumSolMCG}) has been integrated numerically for $a'=0$ to $a'=1$ in incremental steps using the Gauss quadrature method. For this we have set $\frac{8\pi G}{3c^{2}}=\frac{c^{2}}{\chi^{2}}=1$ in order to investigate the behaviour of the model without looking at the physical constraints, and taken all of the free parameters to be the same as in the previous case. }
+\label{fig:ChScale}
+\end{figure}
+In figure \ref{fig:ChScale} it can be seen that the numerically generated and analytical solution for the flat curvature case are in agreement. The scale factor increases slightly faster in later periods for an open curvature than for the flat case and slightly slower for the case of closed curvature.
+\section{Behaviour of various quantities for the case of a Chaplygin equation of state}
+In this section we aim to look at the behaviour of the Hubble parameter and acceleration for the case of a Chaplygin equation of state.
+\subsection{The Hubble parameter for the case of a Chaplygin equation of state}
+Taking the dimensionless Hubble parameter $h\equiv\frac{H}{H_{0}}$ and rewriting equation (\ref{eq:CurvFriedman}) we have that 
+\begin{equation}\label{eq:HubbleParm}
+\begin{split}
+H &= \brac{A\rho -\kappa\frac{F}{a^{2}}}^{\frac{1}{2}},\\
+\end{split}
+\end{equation}
+from which follows that 
+\begin{equation}\label{eq:DimHubbleParm}
+\begin{split}
+h &= \frac{1}{H_{0}}\brac{A\rho -\kappa\frac{F}{a^{2}}}^{\frac{1}{2}}.\\
+\end{split}
+\end{equation}
+Substituting equation (\ref{eq:ReFMCG}) into this gives
+\begin{equation}\label{eq:ChDimHubbleParm}
+\begin{split}
+h &= \frac{1}{H_{0}}\bracc{A\brac{B_{3}a^{-3\brac{\beta}\brac{B_{1}}}+B_{2}}^{\frac{1}{\beta}} -\kappa\frac{F}{a^{2}}}^{\frac{1}{2}}.\\
+\end{split}
+\end{equation}
+We can also let $a=\frac{1}{1+z}$, where $z$ is the red-shift and substitute this into equation (\ref{eq:ChDimHubbleParm}):
+\begin{equation}\label{eq:zChDimHubbleParm}
+\begin{split}
+h(z) &= \frac{1}{H_{0}}\bracc{A\brac{B_{3}\brac{1+z}^{3\brac{\beta}\brac{B_{1}}}+B_{2}}^{\frac{1}{\beta}} -\kappa F\brac{1+z}^{2}}^{\frac{1}{2}}.\\
+\end{split}
+\end{equation}
+This is done as the dimensionless Hubble parameter and red-shift can better be correlated to observational expectations. The behaviour of the dimensionless Hubble parameter can be seen in figure \ref{fig:ChH}.
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.9]{Figures/ch_H.jpg}
+\caption{Here the Parameters have, again, been taken as in the previous cases and we have also set $H_{0}=1$.}
+\label{fig:ChH}
+\end{figure}
+
+Rewriting equation (\ref{eq:zChDimHubbleParm}) we can define two new observable parameters, the fractional energy density parameter ($\Omega$):
+\begin{equation}\label{eq:ChFracEnDen}
+\begin{split}
+h(z)^{2} &= \frac{A}{H_{0}^{2}}\brac{B_{3}\brac{1+z}^{3\brac{\beta}\brac{B_{1}}}+B_{2}}^{\frac{1}{\beta}} -\frac{\kappa F}{H_{0}^{2}}\brac{1+z}^{2}\\
+&= \Omega_{Chap}(z)+\Omega_{\kappa}(z),\\
+\end{split}
+\end{equation}
+where $\Omega_{chap}(z)$ is the fractional energy density of the Chaplygin gas fluid and $\Omega_{\kappa}(z)$ is the fractional energy density of the curvature of the universe.
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.9]{Figures/ch_Om.jpg}
+\caption{Taking the various parameters as in the previous cases, the figure shows the fractional energy density of the Chaplygin gas fluid as well as for the different curvature cases.It is important to point out here that the fractional energy density of the different curvatures are non-linear, but increases much slower than the Chaplygin gas fractional energy density for the chosen parameters.}
+\label{fig:ChFracEnDen}
+\end{figure}
+In figure \ref{fig:ChFracEnDen} we see that the magnitudes of the fractional energy densities for both curvature and Chaplygin gas are of the order of unity for small red-shifts, as is expected. It is also evident that the fractional energy density of the Chaplygin gas increases much faster than that of the curvature term.
+\subsection{Acceleration of the expansion for the case of a Chaplygin gas equation of state}
+Substituting the equation of state (\ref{eq:MCG}) and energy density solution (\ref{eq:FMCG}) for the Chaplygin gas into the Raychaudhuri equation (\ref{eq:RayEq}) gives:
+\begin{equation}\label{eq:ChRaych}
+\begin{split}
+\frac{\ddot{a}}{a} &= -\frac{A}{2}\brac{\brac{3B_{1}-2}\brac{B_{3}a^{-3B_{1}\beta}+B_{2}}^{\frac{1}{\beta}}-3B_{1}B_{2}\brac{B_{3}a^{-3\beta B_{1}}+B_{2}}^{\frac{1-\beta}{\beta}}},\\
+\end{split}
+\end{equation}
+which is the normalized acceleration of the scale factor. The behaviour of the normalized acceleration can be seen in figure \ref{fig:ChAcc} and is initially decelerating as a high order polynomial but reduces to a constant acceleration close to a scale factor value of $a=1$, which corresponds to expectations from observation as well as what is expected for the Chaplygin gas equation of state.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.9]{Figures/ch_ddota.jpg}
+\caption{Here the free parameters have again been taken to be as in the previous cases, which corresponds to $B_{1}=2$, $B_{2}=25$ and $B_{3}=\frac{1}{2}$. All other constants have also been normalized as in the previous cases.}
+\label{fig:ChAcc}
+\end{figure}
+
+From equation (\ref{eq:ChRaych}) and equation (\ref{eq:ChDimHubbleParm}), we can also find an equation for the deceleration parameter $q$, defined in equation (\ref{eq:Deceleration}). We can rewrite $q$ as:
+\begin{equation}\label{eq:ChModDecel}
+\begin{split}
+q &= -\frac{\ddot{a}}{a}\brac{\frac{1}{H}}^{2}         \\
+&= \frac{\frac{A}{2}\brac{\brac{3B_{1}-2}\brac{B_{3}a^{-3B_{1}\beta}+B_{2}}^{\frac{1}{\beta}}-3B_{1}B_{2}\brac{B_{3}a^{-3\beta B_{1}}+B_{2}}^{\frac{1-\beta}{\beta}}}}{A\brac{B_{3}a^{-3\brac{\beta}\brac{B_{1}}}+B_{2}}^{\frac{1}{\beta}} -\kappa\frac{F}{a^{2}}},
+\end{split}
+\end{equation}
+and again substitute $a=\brac{1+z}^{-1}$, to find the decelration parameter as a function of red-shift:
+\begin{equation}\label{eq:ChModDecelZ}
+\begin{split}
+q &= \frac{\frac{A}{2}\brac{\brac{3B_{1}-2}\brac{B_{3}\brac{1+z}^{3B_{1}\beta}+B_{2}}^{\frac{1}{\beta}}-3B_{1}B_{2}\brac{B_{3}\brac{1+z}^{3\beta B_{1}}+B_{2}}^{\frac{1-\beta}{\beta}}}}{A\brac{B_{3}\brac{1+z}^{3\brac{\beta}\brac{B_{1}}}+B_{2}}^{\frac{1}{\beta}} -\kappa F\brac{1+z}^{2}}.
+\end{split}
+\end{equation}
+The behaviour of equation (\ref{eq:ChModDecelZ}) for all three different curvatures can be seen in figure \ref{fig:ChDecel}. 
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.8]{Figures/ch_q.jpg}
+\caption{Here all parameters and constants have again been normalized and taken as in the previous figures.}
+\label{fig:ChDecel}
+\end{figure}
+From the figure it can be seen that for small red-shifts the deceleration parameter is negative which corresponds to an accelerated expansion. For large red-shifts, the deceleration parameter is positive corresponding to a decelerating universe. The figure also shows a relatively sharp change from positive to negative for the deceleration parameter.
+
+
+\chapter{Unified Dark Fluid}
+Another possible candidate for Dark energy that also aims to unify Dark energy and Dark matter into a single Dark fluid is proposed by \textit{Wang, Yan and Meng} \citep{wang2017new}. The proposed candidate is a perfect fluid equation of state $P=\omega\rho$ that is parametrized between an equation of state that describes a matter (and here by Dark matter) dominated universe, and a Dark energy dominated universe. 
+\section{The Pressure-Parametrized Unified Dark Fluid equation of state}
+The proposed equation of state is given as:
+\begin{equation}\label{eq:UDFEoS}
+\begin{split}
+P &= P_{a}+P_{b}\brac{a^{-1}-a},         \\
+\end{split}
+\end{equation}
+with $P_{a}$ and $P_{b}$ free parameters that are to be constrained by observation.
+\paragraph{Solving the fluid equation for the proposed equation of state}
+Substituting equation (\ref{eq:UDFEoS}) into the fluid equation (\ref{eq:4}), gives:
+\begin{equation}\label{eq:UDFFluid}
+\begin{split}
+\dot{\rho} &= -3\brac{\frac{\dot{a}}{a}}\brac{\rho+P_{a}+P_{b}\brac{a^{-1}-a}}. \\
+\end{split}
+\end{equation}
+Solving this first order differential equation we find the energy density to be:\begin{equation}\label{eq:UDFFluidSol}
+\begin{split}
+\rho&= -P_{a}+\frac{3}{4}P_{b}\brac{a-2a^{-1}}+Ca^{-3}, \\
+\end{split}
+\end{equation}
+where $C$ is an integration constant. Comparing the found solution to the energy densities found for the Concordance model, it can be seen that the first term in equation (\ref{eq:UDFFluidSol}) corresponds to that of a Dark energy dominated epoch, while the last term corresponds to that of a dust dominated epoch.
+Again converting equation (\ref{eq:UDFFluidSol}) from scale factor to red-shift:
+\begin{equation}\label{eq:UDFFluidSolZ}
+\begin{split}
+\rho&= -P_{a}+\frac{3}{4}P_{b}\bracc{\brac{1+z}^{-1}-2\brac{1+z}}+C\brac{1+z}^{3}, \\
+\end{split}
+\end{equation}
+and plotting the result, we can see the behaviour of the energy density for the pressure-parametrized unified dark fluid (PPUDF) equation of state.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=1]{Figures/UDF_rho.jpg}
+\caption{Here we have arbitrarily taken $P_{a}=-3.6$, $P_{b}=-10^{-5}$ and $C=1.6$.}
+\label{fig:UDFRho}
+\end{figure}
+In figure \ref{fig:UDFRho} it can be seen that the energy density increases non-linearly with red-shift, as is expected. It is worth pointing out here that the energy density is sensitive to the values of the free parameters.
+
+\section{Behaviour of various quantities for the case of the PPUDF equation of state}
+In this section we again aim to look at the behaviour of the dimensionless Hubble parameter, acceleration and other associated values for the case of a PPUDF equation of state.
+\subsection{The Dimensionless Hubble parameter for the case of a PPUDF equation of state}
+Using the same definition as before, we can find an expression for the dimensionless Hubble parameter as a function of red-shift. Substituting equation (\ref{eq:UDFFluidSolZ}) into equation (\ref{eq:DimHubbleParm}), we have:
+\begin{equation}\label{eq:UDFDimh}
+\begin{split}
+h &= \frac{1}{H_{0}}\bracc{A\brac{-P_{a}+\frac{3}{4}P_{b}\bracc{\brac{1+z}^{-1}-2\brac{1+z}}+C\brac{1+z}^{3}} -\kappa F \brac{1+z}^{2}}^{\frac{1}{2}}.\\
+\end{split}
+\end{equation}
+As can be seen in figure \ref{fig:UDFh}, for the case of a PPUDF equation of state, the dimensionless Hubble parameter increases non-linearly with red-shift. Further more the $h$ is of the order of unity for small red-shifts, as is expected from observation. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=1]{Figures/UDF_H.jpg}
+\caption{Here we have again taken $H_{0}=A=F=1$ and taken the free parameters as before.}
+\label{fig:UDFh}
+\end{figure}
+
+Defining the fractional energy density for the PPUDF case $\Omega_{PPUDF}$ as:
+\begin{equation}\label{eq:UDFOmega}
+\begin{split}
+\Omega_{PPUDF}(z) &\equiv \frac{A}{H_{0}^{2}}\brac{-P_{a}+\frac{3}{4}P_{b}\bracc{\brac{1+z}^{-1}-2\brac{1+z}}+C\brac{1+z}^{3}},       \\
+\end{split}
+\end{equation}
+and keeping the fractional energy density of curvature as before, we can look at the behaviour of the fractional energy densities for the case of a PPUDF equation of state.
+\begin{figure}[H]
+\centering
+\includegraphics[scale=1]{Figures/UDF_Om.jpg}
+\caption{All constants and parameters have been taken as in the previous figures. It is again important to point out that, as in the previous case, the fractional energy density of the different curvatures are non-linear, but increases much slower than the PPUDF fractional energy density for the chosen parameters.}
+\label{fig:UDFOmega}
+\end{figure}
+From figure \ref{fig:UDFOmega} it is clear that the fractional energy density for the PPUDF increases much faster than that of curvature with red-shift, but is comparable to that of curvature for small red-shifts. 
+
+
+\subsection{Acceleration of the scale factor for the case of the PPUDF equation of state}
+Substituting the equation of state (\ref{eq:UDFEoS}) and resulting energy density (\ref{eq:UDFFluidSol}) for the PPUDF into the Raychaudhuri equation (\ref{eq:RayEq}), we have:
+\begin{equation}\label{eq:RayUDF}
+\begin{split}
+\frac{\ddot{a}}{a} &= -\frac{A}{2}\bracc{2P_{a}-\frac{3}{2}P_{b}\brac{\frac{3}{2}a+a^{-1}}+Ca^{-3}}.\\
+\end{split}
+\end{equation}
+From this it is clear that for large values of the scale factor, the Raychaudhuri equation becomes approximately linear. This corresponds with observation, and also suggests that the parameter $P_{b}$ must be small to correspond with an approximately constant acceleration as observational data suggests \citep{wang2017new}. From figure \ref{fig:UDFRay} it is clear that the PPUDF equation of state supports an expansion that is initially decelerating, but changes to an accelerating expansion with a close to constant acceleration.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=1]{Figures/UDF_addot.jpg}
+\caption{All parameters and constants have again been taken as for the previous figures. The plot has been extended to a scale factor of $a=1.5$ to illustrate that the acceleration becomes approximately linear and asymptotically constant.  }
+\label{fig:UDFRay}
+\end{figure} 
+Taking the same approach to find an expression for the deceleration parameter as in equation (\ref{eq:ChModDecel}), we find that the deceleration parameter $q$ for the case of the PPUDF is:
+\begin{equation}\label{eq:UDFq}
+\begin{split}
+q &= \frac{A\bracc{2P_{a}-\frac{3}{2}P_{b}\brac{\frac{3}{2}\brac{1+z}^{-1}+\brac{1+z}}+C\brac{1+z}^{3}}}{2A\brac{-P_{a}+\frac{3}{4}P_{b}\bracc{\brac{1+z}^{-1}-2\brac{1+z}}+C\brac{1+z}^{3}} -\kappa F \brac{1+z}^{2}}.        \\
+\end{split}
+\end{equation}
+It is clear that the deceleration parameter is very sensitive to the values of the free parameters. In figure \ref{fig:UDFq} we again plot the resulting expression for the deceleration parameter as a function of red-shift in order to see the behaviour of the deceleration parameter.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=1]{Figures/UDF_q.jpg}
+\caption{Here the free parameters and constants have been taken to be the same as for the previous figures.}
+\label{fig:UDFq}
+\end{figure}
+It is clear from the figure that the PPUDF equation of state also supports a universe that is initially undergoing an approximately constant deceleration that rapidly changes to an approximately constantly accelerating universe for small reed-shifts.
+
+\chapter{Discussion and conclusions}
 
 
 \newpage
@@ -936,7 +1166,7 @@ for $a=[1,100]$.
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=1]{Figures/z_ch.jpg}
+\includegraphics[scale=1]{Figures/ch_Om.jpg}
 \caption{}
 \end{figure}
 
@@ -1003,7 +1233,7 @@ Integrating this with the same method as the Chaplygin gas for the three differe
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=1]{Figures/UDF_z_vs_t.jpg}
+\includegraphics[scale=1]{Figures/UDF_Om.jpg}
 \caption{}
 \end{figure}
 

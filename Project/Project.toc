@@ -5,15 +5,25 @@
 \contentsline {section}{\numberline {4}The expanding universe}{3}{section.5}
 \contentsline {section}{\numberline {5}The Concordance model ($\Lambda $CDM-model)}{4}{section.6}
 \contentsline {subsection}{\numberline {5.1}Fluid equation from Newtonian Mechanics}{4}{subsection.7}
-\contentsline {subsection}{\numberline {5.2}The Friedman equation}{6}{subsection.20}
-\contentsline {subsection}{\numberline {5.3}The Raychaudhuri Equation}{6}{subsection.24}
-\contentsline {subsection}{\numberline {5.4}Solving the Friedman equation for different epochs and curvatures}{7}{subsection.26}
-\contentsline {subsubsection}{Solving for Matter dominated Epochs}{7}{equation.27}
-\contentsline {subsubsection}{Solving for Radiation dominated Epochs}{7}{equation.27}
-\contentsline {subsubsection}{Solving for Dark Energy dominated Epochs}{7}{equation.27}
-\contentsline {section}{\numberline {6}Shortcomings of the Concordance model and New propositions}{8}{section.29}
-\contentsline {chapter}{\numberline {2}Chaplygin gas}{9}{chapter.30}
-\contentsline {section}{\numberline {1}The modified Chaplygin gas equation of state}{9}{section.31}
-\contentsline {section}{\numberline {2}Solving the Friedman equation for the MCG and\\ flat curvature}{10}{section.38}
-\contentsline {chapter}{\numberline {3}Appendices}{11}{chapter.41}
-\contentsline {paragraph}{For flat curvature ($k=0$)}{24}{equation.95}
+\contentsline {subsection}{\numberline {5.2}The Friedman equation}{6}{subsection.17}
+\contentsline {subsection}{\numberline {5.3}The Raychaudhuri Equation}{6}{subsection.21}
+\contentsline {subsection}{\numberline {5.4}Solving the Friedman equation for different epochs and curvatures}{7}{subsection.24}
+\contentsline {subsubsection}{Solving for Matter dominated Epochs}{7}{equation.25}
+\contentsline {subsubsection}{Solving for Radiation dominated Epochs}{7}{equation.25}
+\contentsline {subsubsection}{Solving for Dark Energy dominated Epochs}{7}{equation.25}
+\contentsline {section}{\numberline {6}Shortcomings of the Concordance model and New propositions}{8}{section.27}
+\contentsline {chapter}{\numberline {2}Chaplygin gas}{9}{chapter.28}
+\contentsline {section}{\numberline {1}The modified Chaplygin gas equation of state}{9}{section.29}
+\contentsline {section}{\numberline {2}Solving the Friedman equation for the MCG}{11}{section.38}
+\contentsline {section}{\numberline {3}Behaviour of various quantities for the case of a Chaplygin equation of state}{12}{section.45}
+\contentsline {subsection}{\numberline {3.1}The Hubble parameter for the case of a Chaplygin equation of state}{12}{subsection.46}
+\contentsline {subsection}{\numberline {3.2}Acceleration of the expansion for the case of a Chaplygin gas equation of state}{14}{subsection.54}
+\contentsline {chapter}{\numberline {3}Unified Dark Fluid}{17}{chapter.60}
+\contentsline {section}{\numberline {1}The Pressure-Parametrized Unified Dark Fluid equation of state}{17}{section.61}
+\contentsline {paragraph}{Solving the fluid equation for the proposed equation of state}{17}{equation.62}
+\contentsline {section}{\numberline {2}Behaviour of various quantities for the case of the PPUDF equation of state}{18}{section.67}
+\contentsline {subsection}{\numberline {2.1}The Dimensionless Hubble parameter for the case of a PPUDF equation of state}{19}{subsection.68}
+\contentsline {subsection}{\numberline {2.2}Acceleration of the scale factor for the case of the PPUDF equation of state}{20}{subsection.73}
+\contentsline {chapter}{\numberline {4}Discussion and conclusions}{23}{chapter.78}
+\contentsline {chapter}{\numberline {5}Appendices}{24}{chapter.79}
+\contentsline {paragraph}{For flat curvature ($k=0$)}{37}{equation.133}
