@@ -1,0 +1,13 @@
+\beamer@sectionintoc {1}{Introduction}{2}{0}{1}
+\beamer@sectionintoc {2}{Friedmann equations}{3}{0}{2}
+\beamer@sectionintoc {3}{Concordance model ($\Lambda $CDM-model)}{4}{0}{3}
+\beamer@sectionintoc {4}{Chaplygin gas}{5}{0}{4}
+\beamer@subsectionintoc {4}{1}{Solution to the fluid equation}{6}{0}{4}
+\beamer@subsectionintoc {4}{2}{Solving the Friedmann equation for the MCG equation of state}{7}{0}{4}
+\beamer@subsectionintoc {4}{3}{Hubble parameter for MCG case}{8}{0}{4}
+\beamer@subsectionintoc {4}{4}{Acceleration of a for MCG case}{9}{0}{4}
+\beamer@sectionintoc {5}{Pressure-Parametrized Unified Dark Fluid (PPUDF)}{10}{0}{5}
+\beamer@subsectionintoc {5}{1}{Solution to the fluid equation}{10}{0}{5}
+\beamer@subsectionintoc {5}{2}{Hubble parameter for PPUDF case}{11}{0}{5}
+\beamer@subsectionintoc {5}{3}{Acceleration of a for PPUDF case}{12}{0}{5}
+\beamer@sectionintoc {6}{Conclusions}{13}{0}{6}
