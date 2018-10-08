@@ -24,6 +24,8 @@
 \contentsline {section}{\numberline {2}Behaviour of various quantities for the case of the PPUDF equation of state}{18}{section.67}
 \contentsline {subsection}{\numberline {2.1}The Dimensionless Hubble parameter for the case of a PPUDF equation of state}{19}{subsection.68}
 \contentsline {subsection}{\numberline {2.2}Acceleration of the scale factor for the case of the PPUDF equation of state}{20}{subsection.73}
-\contentsline {chapter}{\numberline {4}Discussion and conclusions}{23}{chapter.78}
-\contentsline {chapter}{\numberline {5}Appendices}{24}{chapter.79}
-\contentsline {paragraph}{For flat curvature ($k=0$)}{37}{equation.133}
+\contentsline {chapter}{\numberline {4}Final remarks}{23}{chapter.78}
+\contentsline {section}{\numberline {1}Discussion and Conclusions}{23}{section.79}
+\contentsline {section}{\numberline {2}Acknowledgements}{24}{section.80}
+\contentsline {chapter}{\numberline {5}Appendices}{25}{chapter.81}
+\contentsline {paragraph}{For flat curvature ($k=0$)}{38}{equation.135}

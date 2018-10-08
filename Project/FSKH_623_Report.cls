@@ -41,7 +41,7 @@
 %     \vspace*{0.5 cm}
 %     \includegraphics[scale = 0.75]{NWU_LOGO}\\[1.0 cm]   % University Logo
     \includegraphics[clip, trim=0cm 0cm 0.0cm 0cm]{./Figures/nwu-logo.jpg}\\[1.0 cm]   % University Logo
-    \textsc{\LARGE Centre For Space Physics}\\[2.0 cm]                                     % Centre Name
+    \textsc{\LARGE Centre For Space Research}\\[2.0 cm]                                     % Centre Name
     \textsc{\Large Honours}\\[0.5 cm]                                         % Course Number
 %    \textsc{\large Study Unit: \studyunit}\\[0.5 cm]                                       % Study Unit Number
     %\textsc{\large \emph{Week:} \problemnumber}\\[0.5 cm]                              % problem number

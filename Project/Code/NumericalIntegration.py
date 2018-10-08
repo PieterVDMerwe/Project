@@ -338,7 +338,7 @@ plt.show();
 #plt.savefig('UDF_z_vs_t.jpg',dpi=300);
 #plt.show();
 
-x = np. arange(0.1,1.0,0.001);
+x = np. arange(0.1,5.5,0.001);
 udfrho=UDFrho(x,c3,c1,c4);
 plt.plot(z(x),udfrho);
 plt.yscale('log');
