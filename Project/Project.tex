@@ -18,7 +18,7 @@
 \usepackage{microtype}
 %\usepackage{chngcntr}
 %%%%%LINESPACING%%%%%%%%%
-%\renewcommand{\baselinestretch}{0.5}
+\renewcommand{\baselinestretch}{0.8}
 \usepackage{titlesec}
 
 
@@ -29,8 +29,10 @@
 \titlespacing\subsubsection{0pt}{0pt plus 0pt minus 2pt}{0pt plus 0pt minus 2pt}
 %%%%%%%%5Numbering%%%%%%%%%%%%%
 %\counterwithin{equation}{section}
+
+\renewcommand{\thesection}{\thechapter.\arabic{section}}
 \numberwithin{equation}{section}
-\renewcommand{\theequation}{\thechapter.\thesection.\arabic{equation}}
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
 %%%%%%%%%%%%%Floating table solutions %%%%%%%%%%%%%%%%%%
 \usepackage{float}
 \restylefloat{table}
@@ -43,100 +45,105 @@
 \newcommand{\bracc}[1]{\left[#1\right]}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                        
 
+
 \begin{document}
 
-\maketitle
 
-\pagenumbering{gobble}                                            
-\tableofcontents                                                  
+\maketitle
 \pagebreak
+\section*{Abstract}
+dark energy and dark matter account for nearly 95\% of the matter-energy content of the universe, yet very little is known about both dark energy and dark matter. We aim to look at the impact of unifying dark energy and dark matter into a single Dark fluid equation of state and solving the Friedman equations for such a fluid. The first candidate that is looked at is the Chaplygin gas equation of state. The behaviour of the expansion coefficient is looked at for different epochs. The Friedman equations are also solved for a pure dark fluid parametrization equation of state and the behaviour of the accelerated expansion for this equation of state is investigated.
+\pagebreak
+\pagenumbering{gobble}   
+\tableofcontents[]                                                 
+\pagebreak
+
 \pagenumbering{arabic}
 \chapter{Cosmology}
 \section{Introduction}
 The aim of Cosmology is to understand the underlying laws of physics, that are assumed to hold throughout the universe, by explaining the origin and evolution of the universe and all processes contained within it. 
 \section{Newtonian cosmology}
 In 1691 Isaac Newton formulated a Cosmology based on his theory of gravitation contained within his \textit{Philosophiae Naturalis Principia Mathematica} published in 1687 \citep{ITC}.
-Newton considered the universe to be homogeneous (Copernican principle \citep{calcagni2017classical}) and isotropic (has the same properties in all directions) and thus that the distribution of matter in the universe would look the same to all observers regardless of their position \citep{ITC}.This is known as the cosmological principle and holds for scales larger than $170Mpc$\citep{ITC}.\\
-In 1755 Immanuel Kant, inspired by Thomas Wright`s description of the Milk Way (1750), suggested that the diffuse nebulae observed by Galileo could be distant galaxies \citep{ITC}. This offered support to the validity of the Cosmological principle on Galactic scales. Kant also suggested, erroneously, that there also exists repulsive gravitational forces that could both explain the transversal velocities of the stars and compensate for the infinite gravitational forces that should be experienced due to an infinite number of stars, the existence of which is implied by the cosmological principle. \\
-In 1825 Pierre Simon de Laplace disproved Kant`s hypothesis by noting that all the planets and satellites show transversal motion in the same direction, which would be too improbable as Kant`s proposed repulsive gravitational forces would require the transversal velocities to be scattered in random directions\citep{ITC}. Laplace showed that the observed motion could be attributed to the rotation of the primordial gaseous nebulae that the solar system originates from using the conservation of angular momentum. Bernhard Riemann also noted that the universe could be finite while remaining unbounded if the geometry of space has a positive curvature shedding further doubt on the existence of Kant`s repulsive gravitational forces.\\
-Contained within Newton`s \textit{Philosophiae Naturalis Principia Mathematica}, is Newton`s first law of motion, which states that a system that has no external forces acting on it is at rest or moving in uniform motion. Systems of this nature are known as inertial frames. Newton considered an implicit referral to an \textit{absolute} reference system contained within the notions of \textit{at rest} and \textit{uniform motion}, which could not be observed by humans. Ernst Mach published work in 1883 in which he rejected Newton`s concept of an absolute reference system, realizing that all motion is relative \citep{ITC}. \\ 
+Newton considered the universe to be homogeneous (Copernican principle \citep{calcagni2017classical}) and isotropic (has the same properties in all directions) and thus that the distribution of matter in the universe would look the same to all observers regardless of their position \citep{ITC}.This is known as the cosmological principle and holds for scales larger than $170Mpc$ \citep{ITC}.\\
+In 1755 Immanuel Kant, inspired by Thomas Wright's description of the Milk Way (1750), suggested that the diffuse nebulae observed by Galileo could be distant galaxies \citep{ITC}. This offered support to the validity of the Cosmological principle on Galactic scales. Kant also suggested, erroneously, that there also exists repulsive gravitational forces that could both explain the transversal velocities of the stars and compensate for the infinite gravitational forces that should be experienced due to an infinite number of stars, the existence of which is implied by the cosmological principle. \\
+In 1825 Pierre Simon de Laplace disproved Kant's hypothesis by noting that all the planets and satellites show transversal motion in the same direction, which would be too improbable as Kant's proposed repulsive gravitational forces would require the transversal velocities to be scattered in random directions \citep{ITC}. Laplace showed that the observed motion could be attributed to the rotation of the primordial gaseous nebulae that the solar system originates from using the conservation of angular momentum. Bernhard Riemann also noted that the universe could be finite while remaining unbounded if the geometry of space has a positive curvature shedding further doubt on the existence of Kant's repulsive gravitational forces.\\
+Contained within Newton's \textit{Philosophiae Naturalis Principia Mathematica}, is Newton's first law of motion, which states that a system that has no external forces acting on it is at rest or moving in uniform motion. Systems of this nature are known as inertial frames. Newton considered an implicit referral to an \textit{absolute} reference system contained within the notions of \textit{at rest} and \textit{uniform motion}, which could not be observed by humans. Ernst Mach published work in 1883 in which he rejected Newton's concept of an absolute reference system, realizing that all motion is relative \citep{ITC}. \\ 
 \section{General Relativity (GR)}
-Studying the laws of physics from the perspective of observers in different inertial frames, Albert Einstein made the connection between the Geometry of space and the distribution of matter \citep{ITC} and published his \textit{General theory of Relativity} in 1915. The theory is a generalization of Einstein`s theory of special relativity and Newton`s law of gravitation to non-inertial reference frames.\\
-There exists conflicts between Newton`s law of gravitation and Special relativity. Firstly, Newton`s law of gravitation contains only scalars and cannot be written in terms of invariants. Newton`s law of gravitation also does not explicitly account for time dependence, implying that the effects of gravity are instantaneous throughout the universe, which violates the principles of Special relativity. Finally, Newton`s gravitation law does not account for the weak equivalence principle, which states that gravitational mass and inertial mass (Newton`s second law) is equivalent, which has been experimentally found to hold to 1 part in $10^{-13}$ \citep{EP}. \\
+Studying the laws of physics from the perspective of observers in different inertial frames, Albert Einstein made the connection between the Geometry of space and the distribution of matter \citep{ITC} and published his \textit{General theory of Relativity} in 1915. The theory is a generalization of Einstein's theory of special relativity and Newton's law of gravitation to non-inertial reference frames.\\
+There exists conflicts between Newton's law of gravitation and Special relativity. Firstly, Newton's law of gravitation contains only scalars and cannot be written in terms of invariants. Newton's law of gravitation also does not explicitly account for time dependence, implying that the effects of gravity are instantaneous throughout the universe, which violates the principles of Special relativity. Finally, Newton's gravitation law does not account for the weak equivalence principle, which states that gravitational mass and inertial mass (Newton's second law) is equivalent, which has been experimentally found to hold to 1 part in $10^{-13}$ \citep{EP}. \\
 Einstein set out to resolve the above mentioned conflicts and inaccuracies by generalizing the weak equivalence principle to the strong equivalence principle and combining it with the principle of general covariance \citep{ITC}. \\
-The Strong equivalence principle states that \textit{to a free falling observer, the results of any locally performed experiment is independent of the magnitude of the gravitational field.}\citep{ITC, GRFD}  \\
-The principle of general covariance entails rewriting the laws of physics in terms of quantities that are invariant in reference frames with an arbitrary acceleration \citep{ITC}. Einstein had already previously rewritten Newton`s second law, $\vec{F}=m\vec{a}$, in a form that is invariant in all inertial frames during his formulation of Special relativity: $$\vec{F}=\gamma\left(\frac{1}{c}\dv{E}{t},\dv{\vec{p}}{t}\right)$$with $\gamma$ the Lorentz factor. He now went on to apply the principle of general covariance, by rewriting Newton`s second law in terms of Tensor quantities and affine connections: $$\tensor{F}{^\mu}=\frac{D\tensor{P}{^\mu}}{D\tau}\equiv\dv{\tensor{P}{^\mu}}{\tau}+\tensor{\Gamma}{^\mu_{\sigma\nu}}\tensor{P}{^\sigma}\dv{\tensor{x}{^\nu}}{\tau}$$ with the affine connection $$\tensor{\Gamma}{^\mu_{\sigma\nu}}=\frac{1}{2}\tensor{g}{^{\mu\rho}}\left(\pdv{\tensor{g}{_{\sigma\rho}}}{x^\nu}+\pdv{\tensor{g}{_{\nu\rho}}}{x^\sigma}-\pdv{\tensor{g}{_{\sigma\nu}}}{x^\rho}\right)$$ a derivable function of derivatives of the metric tensor $\tensor{g}{_{\mu\nu}}$ \citep{ITC}. In order to achieve this transition from the relativistic form of Newton`s second law to one that is generally covariant, one must realise that Newton`s second law contains space-time derivatives that are dependent on the local geometry of space-time, which is described by the metric tensor. To write Newton`s law in a form that is generally covariant, the covariant derivative operator $$\frac{\tensor{D}{_\mu}\tensor{A}{^\mu}}{D\tau}=\dv{\tensor{A}{^\mu}}{\tau}+\tensor{\Gamma}{^\mu_{\alpha\beta}}\tensor{A}{^\alpha}\dv{\tensor{x}{^{\beta}}}{\tau}$$ has been introduced \citep{GRFD}. \\ 
-Noting that space is only flat locally and only by approximation, Einstein set out to combine the Principle of equivalence and the Generally covariant form of Newton`s second law and came to the realization that an inhomogeneous gravitational field is equivalent to a curved space-time. He found the simplest formulation that describes this to be:
-$$\tensor{G}{_{\mu\nu}}=\frac{8\pi G}{c^{4}}\tensor{T}{_{\mu\nu}}$$
+The Strong equivalence principle states that \textit{to a free falling observer, the results of any locally performed experiment is independent of the magnitude of the gravitational field} \citep{ITC, GRFD}.  \\
+The principle of general covariance entails rewriting the laws of physics in terms of quantities that are invariant in reference frames with an arbitrary acceleration \citep{ITC}. Einstein had already previously rewritten Newton's second law, $\vec{F}=m\vec{a}$, in a form that is invariant in all inertial frames during his formulation of Special relativity: $$\vec{F}=\gamma\left(\frac{1}{c}\dv{E}{t},\dv{\vec{p}}{t}\right),$$with $\gamma$ the Lorentz factor. He now went on to apply the principle of general covariance, by rewriting Newton's second law in terms of Tensor quantities and affine connections: $$\tensor{F}{^\mu}=\frac{D\tensor{P}{^\mu}}{D\tau}\equiv\dv{\tensor{P}{^\mu}}{\tau}+\tensor{\Gamma}{^\mu_{\sigma\nu}}\tensor{P}{^\sigma}\dv{\tensor{x}{^\nu}}{\tau},$$ with the affine connection $$\tensor{\Gamma}{^\mu_{\sigma\nu}}=\frac{1}{2}\tensor{g}{^{\mu\rho}}\left(\pdv{\tensor{g}{_{\sigma\rho}}}{x^\nu}+\pdv{\tensor{g}{_{\nu\rho}}}{x^\sigma}-\pdv{\tensor{g}{_{\sigma\nu}}}{x^\rho}\right)$$ a derivable function of derivatives of the metric tensor $\tensor{g}{_{\mu\nu}}$ \citep{ITC}. In order to achieve this transition from the relativistic form of Newton's second law to one that is generally covariant, one must realise that Newton's second law contains space-time derivatives that are dependent on the local geometry of space-time, which is described by the metric tensor. To write Newton's law in a form that is generally covariant, the covariant derivative operator $$\frac{\tensor{D}{_\mu}\tensor{A}{^\mu}}{D\tau}=\dv{\tensor{A}{^\mu}}{\tau}+\tensor{\Gamma}{^\mu_{\alpha\beta}}\tensor{A}{^\alpha}\dv{\tensor{x}{^{\beta}}}{\tau}$$ has been introduced \citep{GRFD}. \\ 
+Noting that space is only flat locally and only by approximation, Einstein set out to combine the principle of equivalence and the generally covariant form of Newton's second law and came to the realization that an inhomogeneous gravitational field is equivalent to a curved space-time. He found the simplest formulation that describes this to be:
+$$\tensor{G}{_{\mu\nu}}=\frac{8\pi G}{c^{4}}\tensor{T}{_{\mu\nu}},$$
 which forms the ten independent Einstein field equations, with 
-$$\tensor{G}{_{\mu\nu}}=\tensor{R}{_{\mu\nu}}-\frac{1}{2}R\tensor{g}{_{\mu\nu}}$$ where $\tensor{T}{_{\mu\nu}}$ is the Stress-energy tensor, $\tensor{R}{_{\mu\nu}}$ the Ricci tensor and $R$ the Ricci scalar \citep{ITC}. These equations reduce to Newton`s equations in the Weak field limit.
+$$\tensor{G}{_{\mu\nu}}=\tensor{R}{_{\mu\nu}}-\frac{1}{2}R\tensor{g}{_{\mu\nu}}$$ where $\tensor{T}{_{\mu\nu}}$ is the stress-energy tensor, $\tensor{R}{_{\mu\nu}}$ the Ricci tensor and $R$ the Ricci scalar \citep{ITC}. These equations reduce to Newton's equations in the weak field limit.
 \section{The expanding universe}
-After formulating and publishing his theory of general relativity, Einstein proceeded to apply GR to cosmology in 1917. The result of the application of GR, Einstein found, was that of an expanding universe, but due to the belief at the time added a constant to the Field equations in order to have a static universe solution: $$\tensor{G}{_{\mu\nu}}=\frac{8\pi G}{c^{4}}\tensor{T}{_{\mu\nu}}+\Lambda\tensor{g}{_{\mu\nu}}.$$ In 1917, after Einstein`s theory of general relativity, Willem de Sitter published another solution to Einstein`s equation, for an empty space-time with an exponential expansion \citep{ITC, NPSNe}.\\
-Another solution to Einstein`s field equations which idicated an expanding universe, was found by Alexander Friedmann in 1922 \citep{Friedman1922}, and was followed up by Georges Lema\^itre, Howard Robertson and Arthur Walker independently. Their solutions to the field equations is referred to as the Friedmann-Lemaître-Robertson-Walker (FLRW) metric \citep{GRFD}.\\
-In 1929, Edwin Hubble made observations that confirmed that the redshift of most galaxies are dependant to our distance from them, indicating that the universe is expanding \citep{GRFD}. Hubble found a linear dependence: $$\nu=H_{0}r$$ with $H_{0}=69.8^{+5.3}_{-4.1}km s^{-1}Mpc^{-1}$ the Hubble constant \citep{HPValue}. Observations made by the 2011 Nobel prize winners, however, suggests that the universe is undergoing an accelerated expansion \citep{NPSNe}.
-To describe such a universe, a negative pressure is required in the Raynchaudhuri equation (see section 5.3), which dominates for the late time universe. This suggest the existence of another dark component of the energy content of the universe known as Dark Energy.\\
-With the realization of an expanding universe Einstein removed a constant term from his equation, which was later added back into his equation to attribute for the accelerated expansion of the universe (Dark energy constant $\Lambda$).
+After formulating and publishing his theory of general relativity, Einstein proceeded to apply GR to cosmology in 1917. The result of the application of GR, Einstein found, was that of an expanding universe, but due to the belief at the time added a constant to the Field equations in order to have a static universe solution: $$\tensor{G}{_{\mu\nu}}+\Lambda\tensor{g}{_{\mu\nu}}=\frac{8\pi G}{c^{4}}\tensor{T}{_{\mu\nu}}.$$ In 1917, after Einstein's theory of general relativity, Willem de Sitter published another solution to Einstein's equation, for an empty space-time with an exponential expansion \citep{ITC, NPSNe}.\\
+Another solution to Einstein's field equations which indicated an expanding universe, was found by Alexander Friedman in 1922 \citep{Friedman1922}, and was followed up by Georges Lema\^itre, Howard Robertson and Arthur Walker independently. Their solutions to the field equations is referred to as the Friedman-Lema\^itre-Robertson-Walker (FLRW) metric \citep{GRFD}.\\
+In 1929, Edwin Hubble made observations that confirmed that the redshift of most galaxies are dependent on our distance from them, indicating that the universe is expanding \citep{GRFD}. Hubble found a linear dependence: $$\nu=H_{0}r,$$ with $H_{0}=500km s^{-1} Mpc^{-1}$ the Hubble constant \citep{Hubble168}. Recent observations, however, show a value of the Hubble constant closer to $H_{0}=69.8^{+5.3}_{-4.1}km s^{-1}Mpc^{-1}$ \citep{HPValue}. Observations made by the 2011 Nobel Prize winners, however, suggest that the universe is undergoing an accelerated expansion \citep{NPSNe}.
+To describe such a universe, a negative pressure is required in the Raychaudhuri equation (see section 5.3), which dominates in the late-time universe. This suggests the existence of another dark component of the energy content of the universe known as dark energy.\\
+With the realization of an expanding universe Einstein removed the constant term from his equation, which was later added back into his equation to attribute for the accelerated expansion of the universe (dark energy constant $\Lambda$).
 \section{The Concordance model ($\Lambda$CDM-model)}
-The application of GR using the cosmological principle and an expanding universe, due to Hubble`s observations, in a space-time filled with only pressureless matter lead to the Hot Big Bang model. The later observation of a discrepancy between the  predicted and observed rotation of galaxies lead to the addition of Dark Matter to the believed composition of the energy-matter density of the universe. After the observation of an accelerated expansion of the universe, it became apparent that yet another addition to the energy-matter density composition of the universe was necessary. A cosmological constant , with a negative pressure Equation of state, was again added \citep{GRFD}. This lead to the currently accepted cosmological model (the Concordance model).
-\subsection{Fluid equation from Newtonian Mechanics}
+The application of GR using the cosmological principle and an expanding universe, due to Hubble's observations, in a space-time filled with only pressureless matter lead to the Hot Big Bang model. The later observation of a discrepancy between the  predicted and observed rotation of galaxies lead to the addition of dark matter to the believed composition of the energy-matter density of the universe. After the observation of an accelerated expansion of the universe, it became apparent that yet another addition to the energy-matter density composition of the universe was necessary. A cosmological constant, with a negative pressure equation of state, was again added \citep{GRFD}. This lead to the currently accepted cosmological model (the Concordance model).
+\subsection{Fluid equation from Newtonian mechanics}
 
 From the first law of thermodynamics we have that  
 \begin{equation}\label{eq:2}
 \begin{split}
-dE &= -PdV + dQ\\
+dE &= -PdV + dQ,\\
 \end{split}
 \end{equation}
-With $dE$ the change in energy content, $P$ the pressure, $dV$ the change in volume and $dQ$ the change in heat.
-Considering an Isotropic and homogeneous universe \citep{notes4},the expansion of the universe will be adiabatic with the Pressure $P$ constant and there will be no change in the heat ($Q$) content of the universe since there is nowhere for the heat to come from \citep{notes4}. From this we can then conclude that the $dQ$ term in equation (\ref{eq:2}) will be $dQ=0$ and reduces to.
+with $dE$ the change in energy content, $P$ the pressure, $dV$ the change in volume and $dQ$ the change in heat.
+Considering an isotropic and homogeneous universe \citep{notes4}, the expansion of the universe will be adiabatic with the pressure $P$ constant and there will be no change in the heat ($Q$) content of the universe since there is nowhere for the heat to come from \citep{notes4}. From this we can then conclude that the $dQ$ term in equation (\ref{eq:2}) will be $dQ=0$ and reduces to:
 \begin{equation}
 \begin{split}
-dE &= -PdV \\
+dE &= -PdV. \\
 \end{split}
 \end{equation}
 This implies that
 \begin{equation}\label{eq:3}
 \begin{split}
-\dot{E} &= -P\driv{V}{t}             \\
+\dot{E} &= -P\driv{V}{t} ,            \\
 \end{split}
 \end{equation}
 since $P$ is a constant.
 We have that, for c the speed of light, 
 \begin{equation}\label{eq:1}
 \begin{split}
-E &=\frac{4\pi}{3}c^{2}r^{3}\rho\\
+E &=\frac{4\pi}{3}c^{2}r^{3}\rho,\\
 \end{split}
 \end{equation}
 where $\rho$ is the mass density as a function of time.
-If we now consider a expanding universe where the relative motion of galaxies are not due to intrinsic peculiar velocities, but to the expansion of the universe then we can write $r$ as $r=a(t)\chi$ where $\chi$ is the actual distance between the two points (galaxies) and $a(t)$ the scale factor defined so that $a(t)=1$ at the present time. Equation (\ref{eq:1}) then becomes
-\begin{equation}
+If we now consider an expanding universe where the relative motion of galaxies is not due to intrinsic peculiar velocities, but to the expansion of the universe, then we can write $r$ as $r=a(t)\chi$ where $\chi$ is the actual distance between the two points (galaxies) and $a(t)$ the scale factor defined so that $a(t)=1$ at the present time. equation (\ref{eq:1}) then becomes
+\begin{equation}\label{eq:Stuff1}
 \begin{split}
-E &=\frac{4\pi}{3}c^{2}a^{3}\chi^{3}\rho\\
+E &=\frac{4\pi}{3}c^{2}a^{3}\chi^{3}\rho.\\
 \end{split}
 \end{equation}
 From this then follows that
-\begin{equation}
+\begin{equation}\label{eq:Stuff2}
 \begin{split}
-\dot{E} &= \frac{4\pi\chi^{3} c^{2}}{3}\left(3a^{2}\dot{a}\rho+\dot{\rho}a^{3}\right)\\
+\dot{E} &= \frac{4\pi\chi^{3} c^{2}}{3}\left(3a^{2}\dot{a}\rho+\dot{\rho}a^{3}\right).\\
 \end{split}
 \end{equation}
 Substituting this back into equation (\ref{eq:3}) yields
 \begin{equation}\label{eq:4}
 \begin{split}
-\dot{\rho}+3H\left(\rho+P\right) &= 0\\
+\dot{\rho}+3H\left(\rho+P\right) &= 0,\\
 \end{split}
 \end{equation}
-Where $H\equiv\frac{\dot{a}}{a}$ is the Hubble parameter.
-If we now use the equation of state for a perfect fluid: $P=\rho\omega$, where $\omega$ can be a function of time, in such a way that P remains a constant.
-then equation (\ref{eq:4}) becomes
+where $H\equiv\frac{\dot{a}}{a}$ is the Hubble parameter.
+If we now use the equation of state for a perfect fluid: $P=\rho\omega$, where $\omega$ is a constant, then equation (\ref{eq:4}) becomes
 \begin{equation}\label{eq:6}
 \begin{split}
-\dot{\rho}+3H\left(1+\omega\right)\rho &= 0\\.
+\dot{\rho}+3H\left(1+\omega\right)\rho &= 0.\\
 \end{split}
 \end{equation}
 This ODE has a solution of the form  
 \begin{equation}
 \begin{split}
-\rho &= Ca^{-3\left(1+\omega\right)}
+\rho &= Ca^{-3\left(1+\omega\right)},\\
 \end{split}
 \end{equation}
 with $C$ constant.
@@ -149,30 +156,30 @@ For dust (matter) $\omega=0$, for radiation $\omega=\frac{1}{3}$ and for the cos
 The given solutions to the fluid equation as well as the fluid equation (\ref{eq:6}) agrees with what is expected from literature \citep{GRFD, ITC}. 
 
 \subsection{The Friedman equation}
-Consider a isolated, isotropic sphere with mass $M$ and radius $r=a(t)\chi$, where $a(t)$ is the expansion coefficient and $\chi$ the distance between any two points in the sphere \citep{notes4}. From Newtons shell theorem \citep{IronShell}, objects (with mass $m$) on the surface of the sphere will experience the gravitational force due to the mass within the sphere as if all the mass is at the center of the shell. From this the equation of motion for points on the surface of the sphere can be found from Newton`s second law:
+Consider an isolated, isotropic sphere with mass $M$ and radius $r=a(t)\chi$, where $a(t)$ is the expansion coefficient and $\chi$ the distance between any two points on the sphere \citep{notes4}. From Newton's shell theorem \citep{IronShell}, objects (with mass $m$) on the surface of the sphere will experience the gravitational force due to the mass within the sphere as if all the mass were at the center of the shell. From this the equation of motion for points on the surface of the sphere can be found from Newton's second law:
 \begin{equation}
 \begin{split}
-m\ddot{r} &= -\frac{GMm}{r^{2}}\\
+m\ddot{r} &= -\frac{GMm}{r^{2}}.\\
 \end{split}
 \end{equation}
 Multiplying both sides of the equation with $\dot{r}$, dividing by $m$ and integrating over time gives
 \begin{equation}
 \begin{split}
-\frac{1}{2}\dot{r}^2 &= \frac{GM}{r}+U\\
+\frac{1}{2}\dot{r}^2 &= \frac{GM}{r}+U,\\
 \end{split}
 \end{equation}
-Where $U$ is an integration constant. Since we have that $M=\frac{4\pi}{3}r^{3}\rho$ and $r=a\chi$, it follows that
+where $U$ is an integration constant. Since we have that $M=\frac{4\pi}{3}r^{3}\rho$ and $r=a\chi$, it follows that
 \begin{equation}\label{eq:5}
 \begin{split}
-\left(\frac{\dot{a}}{a}\right)^{2} &= \frac{8\pi}{3}G\rho+\frac{2U}{a^{2}\chi^{2}}\\
+\left(\frac{\dot{a}}{a}\right)^{2} &= \frac{8\pi}{3}G\rho+\frac{2U}{a^{2}\chi^{2}},\\
 \end{split}
 \end{equation}
 which is the Friedman equation, with $\rho$ the mass-density.
-\subsection{The Raychaudhuri Equation}
-From the result of the Friedman equation (\ref{eq:5}) and the Fluid Equation (\ref{eq:6}) the Raychaudhuri equation can be found as:
+\subsection{The Raychaudhuri equation}
+From the result of the Friedman equation (\ref{eq:5}) and the Fluid equation (\ref{eq:6}) the Raychaudhuri equation can be found as:
 \begin{equation}\label{eq:RayEq}
 \begin{split}
-\frac{\ddot{a}}{a} &= -\frac{4\pi}{3}G\left(\rho +3P\right)\\
+\frac{\ddot{a}}{a} &= -\frac{4\pi}{3}G\left(\rho +3P\right),\\
 \end{split}
 \end{equation}
 where $P$ is the pressure. From this it is evident that for $\rho +3P > 0$, the universe will undergo a decelerating expansion and an accelerating expansion for the opposite case. We can also introduce a new parameter
@@ -183,16 +190,16 @@ q &\equiv -\frac{\ddot{a}a}{\dot{a}^{2}},     \\
 \end{equation}
 known as the deceleration parameter.
 \subsection{Solving the Friedman equation for different epochs and curvatures}
-Equation (\ref{eq:5}) can be rewritten as \citep{notes4}
+equation (\ref{eq:5}) can be rewritten as \citep{notes4}
 \begin{equation}
 \begin{split}\label{eq:CurvFriedman}
 \dot{a}^{2} &= \frac{8\pi G}{3c^{2}}\rho a^{2}-\kappa\frac{c^{2}}{\chi^{2}}\\
-&= A\rho a^{2}-\kappa B\\
+&= A\rho a^{2}-\kappa B,\\
 \end{split}
 \end{equation}
-with $\rho$ energy density, $\kappa$ curvature and $\chi$ the present value of curvature radius. Let curvature take the values $\kappa=-1$ for open space, $\kappa=1$ for closed space and $\kappa=0$ for flat space \citep{Curv}, then using the solutions to equation (\ref{eq:6}) the solutions to the Friedman equation (\ref{eq:5}) can be summarised as
+with $\rho$ energy density, $\kappa$ curvature and $\chi$ the present value of curvature radius. Let curvature take the values $\kappa=-1$ for open space, $\kappa=1$ for closed space and $\kappa=0$ for flat space \citep{Curv}, then using the solutions to equation (\ref{eq:6}) the solutions to the Friedman equation (\ref{eq:5}) can be summarised in the following tables.
 %\pagebreak
-\subsubsection{Solving for Matter dominated Epochs}
+\subsubsection{Solving for matter dominated Epochs}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{table}[H]
@@ -233,7 +240,7 @@ $-1$  & $\sqrt{AC_{rad}}\sinh\brac{\sqrt{B}\brac{\eta}}$ & $\sqrt{\frac{AC_{rad}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Solving for Dark Energy dominated Epochs}
+\subsubsection{Solving for dark energy dominated Epochs}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{table}[H]
@@ -253,19 +260,19 @@ $-1$  & $-\sqrt{\frac{B}{AC_{DE}}}\csch\sqrt{B}\brac{\eta}$ & $-\sqrt{\frac{1}{A
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Where the a new parametrization, known as the conformal time parametrization has been introduced. The new parametrization is defined by, 
+Here a new parametrization, known as the conformal time parametrization, has been introduced. The new parametrization is defined by 
 \begin{equation}
 \begin{split}
-\int dt &= \int a d\eta\\
+\int dt &= \int a d\eta,\\
 \end{split}
 \end{equation}
-where $\eta$ is the farthest distance that information could have travelled since the beginning of the universe\citep{ConF}.
-\section{Shortcomings of the Concordance model and New propositions}
+where $\eta$ is the farthest distance that information could have travelled since the beginning of the universe \citep{ConF}.
+\section{Shortcomings of the Concordance model and new propositions}
 Though the Concordance model has been very successful thus far in the description of a Hot Big Bang Cosmology, several problems still exist that brings the correctness of the concordance model into question. \\
-First among the above mention problems include The Horizon and Flatness problems. The Horizon problem Brings into question the assumption of homogeneity of the initial universe, as approximately $\backsim 10^{83}$ separate region of the universe are not casually connected \citep{IU}. The Flatness problem refers to the   energy-density $\rho$ of the universe that is observed to be very near to the critical density $\rho_{cr}=\frac{3H^{2}}{8\pi G}$ \citep{GRES, IU}. These problems as well as the monopole problem in which the concordance model predicts the existence of monopoles in quantities much larger than what is observed , are solved if one introduces an inflationary universe \citep{IU}. An inflationary universe describes a cosmology that undergoes a sudden inflation after the radiation dominated Epoch that occurs due to the expanding supercooling and then subsequently reheating of the primordial universe. The problem with such a cosmology is the difficulty of a finding a sufficiently smooth inflation that can be reconsiled with the concordance modal \citep{IU}.\\
+First among the above-mentioned problems include the Horizon and Flatness problems. The Horizon problem brings into question the assumption of homogeneity of the initial universe, as approximately $\backsim 10^{83}$ separate regions of the universe are not causally connected \citep{IU}. The Flatness problem refers to the   energy-density $\rho$ of the universe that is observed to be very near to the critical density $\rho_{cr}=\frac{3H^{2}}{8\pi G}$ \citep{GRES, IU}. These problems as well as the monopole problem in which the concordance model predicts the existence of monopoles in quantities much larger than what is observed, are solved if one introduces an inflationary universe \citep{IU}. An inflationary universe describes a cosmology that undergoes a sudden inflation after the radiation dominated Epoch that occurs due to the expanding supercooling and then subsequently reheating of the primordial universe. The problem with such a cosmology is the difficulty of finding a sufficiently smooth inflation that can be reconciled with the concordance model \citep{IU}.\\
 
 \chapter{Chaplygin gas}
-As stated in Chapter 1, observations of the luminosities of type Ia supernovae suggest that the universe is undergoing an accelerated expansion \citep{NPSNe, RMCGAU}, which suggests the existence of Dark Energy. One possible candidate for Dark Energy, which also aims to unify Dark energy and Dark matter, is a Chaplygin gas equation of state which has characteristics of a Matter dominated epoch for small values of the scale factor and characteristics of a Dark Energy dominated epoch for larger values of the expansion coefficient.
+As stated in Chapter 1, observations of the luminosities of type Ia supernovae suggest that the universe is undergoing an accelerated expansion \citep{NPSNe, RMCGAU}, which suggests the existence of dark energy. One possible candidate for dark energy, which also aims to unify dark energy and dark matter, is a Chaplygin gas equation of state which has characteristics of a matter dominated epoch for small values of the scale factor and characteristics of a dark energy dominated epoch for larger values of the expansion coefficient.
 
 \section{The modified Chaplygin gas equation of state}
 \renewcommand{\baselinestretch}{0.5}
@@ -293,7 +300,7 @@ P &=A_{2}\rho -\frac{A_{1}}{\rho^{\alpha}},\ \ \ \ \alpha>-1,         \\
 \renewcommand{\baselinestretch}{1.3}
 where $A_{1},A_{2}$ and $\alpha$ are free parameters. The MCG reduces to the GCG for $A_{2}=0$, which in turn reduces to the OCG for $\alpha=1$.
 \subsection*{Solving the fluid equation}
-Substituting the Equation of state for the MCG, equation (\ref{eq:MCG}), into the fluid equation (\ref{eq:4}) gives :
+Substituting the equation of state for the MCG, equation (\ref{eq:MCG}), into the fluid equation (\ref{eq:4}) gives :
 \begin{equation}\label{eq:FMCG0}
 \begin{split}
 \dot{\rho}+3H\brac{\rho+\brac{A_{2}\rho-\frac{A_{1}}{\rho^{\alpha}}}} &= 0. \\
@@ -311,7 +318,7 @@ For $A_{2}=0$ this reduces to the solution for the generalized Chaplygin gas. Fo
 \rho&=\brac{C_{2}a^{-6}+A_{1}}^{\frac{1}{2}}.\\
 \end{split}
 \end{equation}
-If we consider large values of $a\ \brac{a>>1}$, the constant term in equation (\ref{eq:FMCG}) dominates and the Chaplygin gas reduces to the the energy density of the cosmological constant, with $\Lambda=\brac{\frac{A_{1}}{1+A_{2}}}^{\frac{1}{\alpha+1}}$. Considering small values of $a\ \brac{a<<1}$ the non-constant term in equation (\ref{eq:FMCG}) dominates and the Chaplygin gas reduces to the the energy density of dust $\rho=\brac{\frac{C_{2}}{1+A_{2}}}^{\frac{1}{1+\alpha}}a^{-3(1+A_{2})}$. Equation (\ref{eq:FMCG}) can be rewritten in terms of red-shift:
+If we consider large values of $a\ \brac{a>>1}$, the constant term in equation (\ref{eq:FMCG}) dominates and the Chaplygin gas reduces to the energy density of the cosmological constant, with $\Lambda=\brac{\frac{A_{1}}{1+A_{2}}}^{\frac{1}{\alpha+1}}$. Considering small values of $a\ \brac{a<<1}$ the non-constant term in equation (\ref{eq:FMCG}) dominates and the Chaplygin gas reduces to the energy density of dust $\rho=\brac{\frac{C_{2}}{1+A_{2}}}^{\frac{1}{1+\alpha}}a^{-3(1+A_{2})}$. equation (\ref{eq:FMCG}) can be rewritten in terms of red-shift:
 \begin{equation}\label{eq:FMCGZ}
 \begin{split}
 \rho  &= \bracc{\frac{C_{2}\brac{1+z}^{3\brac{\alpha+1}\brac{1+A_{2}}}+A_{1}}{1+A_{2}}}^{\frac{1}{1+\alpha}},         \\
@@ -353,7 +360,7 @@ Solving this first order, non-linear differential equation, we have:
 +\frac{1}{2\beta+1}&\brac{\frac{B_{3}}{B_{2}}a^{-3B_{1}\beta}+1}^{-1-\frac{1}{2\beta}}\ _{2}F_{1}\brac{1,1+\frac{1}{2\beta};2+\frac{1}{2\beta};\brac{\frac{B_{3}}{B_{2}}a^{-3B_{1}\beta}+1}^{-1}},\\
 \end{split}
 \end{equation}
-where $_{2}F_{1}\brac{a,b;c;x}$ is the hyper geometric function. \\
+where $_{2}F_{1}\brac{a,b;c;x}$ is the hypergeometric function. \\
 Due to the non-linearity and complexity of the differential equation, we do not solve equation (\ref{eq:UnSolFrCh}) analytically for non-flat curvatures, but instead take a numerical approach.
 Rewriting equation (\ref{eq:UnSolFrCh}), we have time ($t$) as a function of scale factor ($a$):
 \begin{equation}\label{eq:NumSolMCG}
@@ -400,7 +407,7 @@ This is done as the dimensionless Hubble parameter and red-shift can better be c
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.9]{Figures/ch_H.jpg}
-\caption{Here the Parameters have, again, been taken as in the previous cases and we have also set $H_{0}=1$.}
+\caption{Here the parameters have, again, been taken as in the previous cases and we have also set $H_{0}=1$.}
 \label{fig:ChH}
 \end{figure}
 
@@ -442,7 +449,7 @@ q &= -\frac{\ddot{a}}{a}\brac{\frac{1}{H}}^{2}         \\
 &= \frac{\frac{A}{2}\brac{\brac{3B_{1}-2}\brac{B_{3}a^{-3B_{1}\beta}+B_{2}}^{\frac{1}{\beta}}-3B_{1}B_{2}\brac{B_{3}a^{-3\beta B_{1}}+B_{2}}^{\frac{1-\beta}{\beta}}}}{A\brac{B_{3}a^{-3\brac{\beta}\brac{B_{1}}}+B_{2}}^{\frac{1}{\beta}} -\kappa\frac{F}{a^{2}}},
 \end{split}
 \end{equation}
-and again substitute $a=\brac{1+z}^{-1}$, to find the decelration parameter as a function of red-shift:
+and again substitute $a=\brac{1+z}^{-1}$, to find the deceleration parameter as a function of red-shift:
 \begin{equation}\label{eq:ChModDecelZ}
 \begin{split}
 q &= \frac{\frac{A}{2}\brac{\brac{3B_{1}-2}\brac{B_{3}\brac{1+z}^{3B_{1}\beta}+B_{2}}^{\frac{1}{\beta}}-3B_{1}B_{2}\brac{B_{3}\brac{1+z}^{3\beta B_{1}}+B_{2}}^{\frac{1-\beta}{\beta}}}}{A\brac{B_{3}\brac{1+z}^{3\brac{\beta}\brac{B_{1}}}+B_{2}}^{\frac{1}{\beta}} -\kappa F\brac{1+z}^{2}}.
@@ -458,9 +465,9 @@ The behaviour of equation (\ref{eq:ChModDecelZ}) for all three different curvatu
 From the figure it can be seen that for small red-shifts the deceleration parameter is negative which corresponds to an accelerated expansion. For large red-shifts, the deceleration parameter is positive corresponding to a decelerating universe. The figure also shows a relatively sharp change from positive to negative for the deceleration parameter.
 
 
-\chapter{Unified Dark Fluid}
-Another possible candidate for Dark energy that also aims to unify Dark energy and Dark matter into a single Dark fluid is proposed by \textit{Wang, Yan and Meng} \citep{wang2017new}. The proposed candidate is a perfect fluid equation of state $P=\omega\rho$ that is parametrized between an equation of state that describes a matter (and here by Dark matter) dominated universe, and a Dark energy dominated universe. 
-\section{The Pressure-Parametrized Unified Dark Fluid equation of state}
+\chapter{Unified dark Fluid}
+Another possible candidate for dark energy that also aims to unify dark energy and dark matter into a single dark fluid is proposed by \textit{Wang, Yan and Meng} \citep{wang2017new}. The proposed candidate is a perfect fluid equation of state $P=\omega\rho$ that is parametrized between an equation of state that describes a matter (and here by dark matter) dominated universe, and a dark energy dominated universe. 
+\section{The Pressure-Parametrized Unified dark Fluid equation of state}
 The proposed equation of state is given as:
 \begin{equation}\label{eq:UDFEoS}
 \begin{split}
@@ -480,7 +487,7 @@ Solving this first order differential equation we find the energy density to be:
 \rho&= -P_{a}+\frac{3}{4}P_{b}\brac{a-2a^{-1}}+Ca^{-3}, \\
 \end{split}
 \end{equation}
-where $C$ is an integration constant. Comparing the found solution to the energy densities found for the Concordance model, it can be seen that the first term in equation (\ref{eq:UDFFluidSol}) corresponds to that of a Dark energy dominated epoch, while the last term corresponds to that of a dust dominated epoch.
+where $C$ is an integration constant. Comparing the found solution to the energy densities found for the Concordance model, it can be seen that the first term in equation (\ref{eq:UDFFluidSol}) corresponds to that of a dark energy dominated epoch, while the last term corresponds to that of a dust dominated epoch.
 Again converting equation (\ref{eq:UDFFluidSol}) from scale factor to red-shift:
 \begin{equation}\label{eq:UDFFluidSolZ}
 \begin{split}
@@ -564,8 +571,8 @@ It is clear from the figure that the PPUDF equation of state also supports a uni
 
 \chapter{Final remarks}
 \section{Discussion and Conclusions}
-From figures \ref{fig:ChRho} and \ref{fig:UDFRho} it is clear that both the Chaplygin gas and the PPUDF equations of state shows behaviour of the energy density that corresponds with that of the concordance model for both the dust and Dark energy dominated epochs. Both equations of state result in a expression for energy density that is non-linear for large red-shifts. The expression for energy density that results from the Chaplygin gas equation of state also reduces to a constant for small red-shift. For the energy density expression that results from the PPUDF equation of state, figure \ref{fig:UDFRho} shows that the energy density deviates from the Concordance model for small red-shifts, but reduces to the concordance model in the near future which is consistent with the findings of \textit{Wang, Yan} and \textit{Meng} \citep{wang2017new}. Looking at the behaviour of the dimensionless Hubble parameter that results from using either equation of state, we find that both equations of state are viable when compared to what is expected based on observation. The behaviour of the deceleration parameter that results from both the PPUDF and Chaplygin gas equations of state, support an expansion that is initially decelerating, which then abruptly changes to a near constantly accelerating expansion. The former behaviour is consistent with a dust dominated epoch. The later is consistent with a Dark energy dominated epoch. The behaviour resulting from both equations of state are very sensitive to the chosen values of the free parameters and must therefore be constrained by observation.\\
-From the resulting behaviour found for both the PPUDF and Chaplygin gas equations of state, it is clear that it is possible to parametrize the equations of state for the dust dominated epoch and Dark energy dominated epoch into that of a single unified Dark fluid equation of state that is consistent with the Concordance model.
+From figures \ref{fig:ChRho} and \ref{fig:UDFRho} it is clear that both the Chaplygin gas and the PPUDF equations of state show behaviour of the energy density that corresponds with that of the concordance model for both the dust and dark energy dominated epochs. Both equations of state result in an expression for energy density that is non-linear for large red-shifts. The expression for energy density that results from the Chaplygin gas equation of state also reduces to a constant for small red-shift. For the energy density expression that results from the PPUDF equation of state, figure \ref{fig:UDFRho} shows that the energy density deviates from the Concordance model for small red-shifts, but reduces to the concordance model in the near future which is consistent with the findings of \textit{Wang, Yan} and \textit{Meng} \citep{wang2017new}. Looking at the behaviour of the dimensionless Hubble parameter that results from using either equation of state, we find that both equations of state are viable when compared to what is expected based on observation. The behaviour of the deceleration parameter that results from both the PPUDF and Chaplygin gas equations of state, support an expansion that is initially decelerating, which then abruptly changes to a near constantly accelerating expansion. The former behaviour is consistent with a dust dominated epoch. The later is consistent with a dark energy dominated epoch. The behaviour resulting from both equations of state are very sensitive to the chosen values of the free parameters and must therefore be constrained by observation.\\
+From the resulting behaviour found for both the PPUDF and Chaplygin gas equations of state, it is clear that it is possible to parametrize the equations of state for the dust dominated epoch and dark energy dominated epoch into that of a single unified dark fluid equation of state that is consistent with the Concordance model.
 
 \section{Acknowledgements}
 I wish to thank The National Astrophysics and Space Science (NASSP) and  Center for Space Research (CSR) for funding and support as well as Dr. Amare Abebe  and Dr. Bishop Mongwane for their support with the project.
@@ -574,22 +581,8 @@ I wish to thank The National Astrophysics and Space Science (NASSP) and  Center 
 \newpage
 \chapter{Appendices}
 \section*{Appendix A}
-\subsection*{Equation of State from Newtonian Mechanics}
+\subsection*{equation of State from Newtonian Mechanics}
 
-From the first law of thermodynamics we have that  
-\begin{equation}
-\begin{split}
-dE &= -PdV + dQ\\
-\end{split}
-\end{equation}
-With $dE$ the change in energy content, $P$ the pressure, $dV$ the change in volume and $dQ$ the change in heat.
-Considering an Isotropic and homogeneous universe \citep{notes4},the expansion of the universe will be adiabatic with the Pressure $P$ constant and there will be no change in the heat ($Q$) content of the universe since there is nowhere for the heat to come from \citep{notes4}. From this we can then conclude that the $dQ$ term in equation 1 will be $dQ=0$ and reduces to.
-\begin{equation}
-\begin{split}
-dE &= -PdV \\
-\end{split}
-\end{equation}
-this impies that
 \begin{equation}
 \begin{split}
 E(t) &= -PV(t)\\
@@ -608,27 +601,8 @@ E &= Mc^{2}\\
 \end{split}
 \end{equation}
 where $\rho$ is the mass density as a function of time.
-If we now consider a expanding universe where the relative motion of galaxies are not due to intrinsic peculiar velocities, but to the expansion of the universe then we can write $r$ as $r=a(t)\chi$ where $\chi$ is the actual distance between the two points (galaxies) and $a(t)$ the expansion parameter defined so that $a(t)=1$ at the present time. Equations 4 then becomes
-\begin{equation}
-\begin{split}
-V &= \frac{4\pi}{3}a^{3}\chi^{3}\\
-E &= Mc^{2}\\
-&=\frac{4\pi}{3}c^{2}a^{3}\chi^{3}\rho\\
-\end{split}
-\end{equation}
-From this then follows that
-\begin{equation}
-\begin{split}
-\dot{V} &= 4\pi\chi^{3}a^{2}\dot{a}\\
-\end{split}
-\end{equation}
-and
-\begin{equation}
-\begin{split}
-\dot{E} &= \frac{4\pi\chi^{3} c^{2}}{3}\left(3a^{2}\dot{a}\rho+\dot{\rho}a^{3}\right)\\
-\end{split}
-\end{equation}
-Substituting this back into equation 3 yields
+
+Substituting equations (\ref{eq:Stuff1}) and (\ref{eq:Stuff2}) back into equation 3 yields
 \begin{equation}
 \begin{split}
 \frac{4\pi\chi^{3} c^{2}}{3}\left(3a^{2}\dot{a}\rho+\dot{\rho}a^{3}\right) &= -P4\pi\chi^{3}a^{2}\dot{a}\\
@@ -637,16 +611,9 @@ Substituting this back into equation 3 yields
 \Rightarrow \dot{\rho}+3H\left(\rho+P\right) &= 0\\
 \end{split}
 \end{equation}
-Where $H$ is the Hubble parameter.
-If we now let $P=\rho\omega$, where $\omega$ can be a function of time, in such a way that P remains a constant.
-then equation 8 becomes
-\begin{equation}
-\begin{split}
-\dot{\rho}+3H\left(\rho+\rho\omega\right) &= 0\\
-\dot{\rho}+3H\left(1+\omega\right)\rho &= 0\\
-\end{split}
-\end{equation}
-We can solve this ODE 
+
+
+Solving equation (\ref{eq:6}) 
 \begin{equation}
 \begin{split}
 \dot{\rho}+3H\left(1+\omega\right)\rho &= 0\\
@@ -657,28 +624,10 @@ We can solve this ODE
 \end{split}
 \end{equation}
 with $C$ and $k$ constants.
-For matter $\omega=0$, for radiation $\omega=\frac{1}{3}$ and for the cosmological constant $\omega=-1$ \citep{notes4}. From this then follows that for matter 
-\begin{equation}
-\begin{split}
-\rho &= Ca^{-3}\\
-\end{split}
-\end{equation}
-for radiation
-\begin{equation}
-\begin{split}
-\rho &= Ca^{-4}\\
-\end{split}
-\end{equation}
-and for the cosmological constant
-\begin{equation}
-\begin{split}
-\rho &= C\\
-\end{split}
-\end{equation}
 
 
 \subsection*{The Expansion equation}
-Consider a isolated, isotropic sphere with mass $M$ and radius $R=a(t)r$, where $a(t)$ is the expansion coefficient and $r$ the distance between any two points in the sphere \citep{notes4}. From Newtons shell theorem \citep{IronShell}, objects (with mass $m$) on the surface of the sphere will experience the gravitational force due to the mass within the sphere as if all the mass is at the center of the shell. From this the equation of motion for points on the surface of the sphere can be found from Newton`s second law:
+
 \begin{equation}
 \begin{split}
 m\ddot{R} &= -\frac{GMm}{R^{2}}\\
@@ -700,16 +649,10 @@ Where $U$ is an integration constant. Since we have that $M=\frac{4\pi}{3}R^{3}\
 \end{split}
 \end{equation}
 which is the expansion equation, with $\rho$ the mass-density.
-\pagebreak
-\subsection*{The Acceleration equation}
-From the result of equation (3) (The Expansion equation) and the equation of state:
-\begin{equation}
-\begin{split}
-\dot{\rho}+3H\left(1+\omega\right)\rho &= 0\\
-\end{split}
-\end{equation}
-we can find the Acceleration equation.
-From the The Expansion equation (3) we have that
+
+\subsection*{The Raychaudhuri equation}
+
+From the the Friedman equation (\ref{eq:5}) we have that
 \begin{equation}
 \begin{split}
 \left(\frac{\dot{a}}{a}\right)^{2} &= \frac{8\pi}{3}G\rho+\frac{2U}{a^{2}r^{2}}\\
@@ -718,7 +661,7 @@ From the The Expansion equation (3) we have that
 \Rightarrow 2\dot{a}\ddot{a} &= \frac{8\pi}{3}G\left(2\rho a\dot{a}+\dot{\rho}a^{2}\right)\\
 \end{split}
 \end{equation}
-dividing this by $2a\dot{a}$ and substituting in the Equation of State (with $H=\frac{\dot{a}}{a}$) gives
+dividing this by $2a\dot{a}$ and substituting in the equation of State (with $H=\frac{\dot{a}}{a}$) gives
 \begin{equation}
 \begin{split}
 \Rightarrow \frac{\ddot{a}}{a} &= \frac{4\pi}{3}G\left(2\rho +\dot{\rho}\frac{a}{\dot{a}}\right)\\
@@ -730,9 +673,8 @@ dividing this by $2a\dot{a}$ and substituting in the Equation of State (with $H=
 \end{equation}
 where $P=\rho\omega$ is the pressure.The result of (6) is the Acceleration equation.
 
-\pagebreak
 \subsection*{Solving the Friedman equations for different epochs and curvatures}
-Equation (3) can be rewritten as \citep{notes4}
+equation (3) can be rewritten as \citep{notes4}
 \begin{equation}
 \begin{split}
 \dot{a}^{2} &= \frac{8\pi G}{3c^{2}}\epsilon a^{2}-\kappa\frac{c^{2}}{R_{0}^{2}}\\
@@ -861,7 +803,7 @@ From which follows
 \Rightarrow t &= -\sqrt{\frac{AC_{0}}{B^{2}}}\cos\brac{\sqrt{B}\brac{\eta}} \\
 \end{split}
 \end{equation}
-\paragraph*{For Dark energy dominated epoch}
+\paragraph*{For dark energy dominated epoch}
 For matter dominated epochs $\epsilon=C_{0}$, from which follows that equation (11) becomes
 \begin{equation}
 \begin{split}
@@ -883,7 +825,6 @@ Letting $u=a\sqrt{\frac{AC_{0}}{B}}$
 \Rightarrow a &= \sqrt{\frac{B}{AC_{0}}}\cosh\brac{\sqrt{AC_{0}}\brac{t-t_{0}}}\\
 \end{split}
 \end{equation}
-\pagebreak
 \subsubsection*{Solving for open space}
 For open space $\kappa=-1$
 \begin{equation}
@@ -891,7 +832,7 @@ For open space $\kappa=-1$
 \dot{a}^{2} &= A\epsilon a^{2}+B\\
 \end{split}
 \end{equation}
-\paragraph*{matter dominated epoch}
+\paragraph*{For matter dominated epoch}
 For matter dominated epochs $\epsilon=C_{0}a^{-3}$, from which follows that equation (23) becomes
 \begin{equation}
 \begin{split}
@@ -1002,7 +943,7 @@ t &= -\sqrt{\frac{1}{AC_{0}}}ln\left|\tanh\frac{\sqrt{B}}{2}\brac{\eta}\right| \
 \end{equation}
 \section*{Appendix B - Caplygin gas}
 \subsection*{Solving the fluid equation}
-Using the Equation of state for the generalized modified Chaplygin gas:
+Using the equation of state for the generalized modified Chaplygin gas:
 \begin{equation}\label{eq:B1}
 \begin{split}
 P &=A_{1}\rho-\frac{A_{2}}{\rho^{\alpha}},         \\
@@ -1028,14 +969,7 @@ becomes:
 \rho&=\brac{\frac{c_{2}a^{-3\brac{\alpha+1}\brac{1+A_{1}}}+A_{2}}{\brac{1+A_{1}}}}^{\frac{1}{\alpha+1}}.\\
 \end{split}
 \end{equation}
-For $A_{1}=0$ this reduces to the solution for the generalized Chaplygin gas. For $A_{1}=0$ and $\alpha=1$ this reduces to the ordinary Chaplygin gas.
-For the ordinary Chaplygin gas:
-\begin{equation}\label{eq:B4}
-\begin{split}
-\rho&=\brac{c_{2}a^{-6}+A_{2}}^{\frac{1}{2}},\\
-\end{split}
-\end{equation}
-if we consider large values of $a\ \brac{a>>1}$, the constant term in equation (\ref{eq:B4}) dominates and the Chaplygin gas reduces to the the energy density of the cosmological constant, with $\Lambda=\sqrt{A_{2}}$. Considering small values of $a\ \brac{a<<1}$ the non-constant term in equation (\ref{eq:B4}) dominates and the Chaplygin gas reduces to the the energy density of dust $\rho=c_{3}a^{-3}$.
+
 \subsection*{Attempting to solve the Friedman equation for Chaplygin gas analytically}
 From the results of equation (\ref{eq:B3}), we have:
 \begin{equation}\label{eq:B5}
@@ -1053,7 +987,7 @@ where $\beta=\alpha+1$, $B_{1}=1+A_{1}$, $B_{2}=\frac{A_{2}}{1+A_{1}}$ and $B_{3
 \end{equation}
 
 \paragraph{For flat curvature ($k=0$)}
-Equation (\ref{eq:B6}) becomes and can be rewritten as:
+equation (\ref{eq:B6}) becomes and can be rewritten as:
 \begin{equation}\label{eq:B7}
 \begin{split}
 \dot{a}^{2} &= A\brac{B_{3}a^{-3\beta B_{1}}+B_{2}}^{\frac{1}{\beta}} a^{2}\\
@@ -1131,50 +1065,7 @@ Letting $L=z^{\beta}$, $\frac{1}{\beta}L^{\frac{1}{\beta}-1}dL=dz$, from which f
 %\end{split}
 %\end{equation}
 
-\subsection*{Numerical approach to solving the Friedman equation for Chaplygin gas}
-Plotting $t$ as a function of $a$, as follows
-\begin{equation}\label{eq:B9}
-\begin{split}
-t &= \int_{a=1}^{a'}\brac{D\brac{c_{2}a^{-3\beta }+A_{2}}^{\frac{1}{\beta}}a^{2}-kF }^{-\frac{1}{2}}da, \\
-\end{split}
-\end{equation}
-for $a=[1,100]$.
 
-\begin{figure}[H]
-\centering
-\includegraphics[scale=1]{Figures/a_ch.jpg}
-\caption{ }
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[scale=1]{Figures/ch_q.jpg}
-\caption{}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[scale=1]{Figures/ch_ddota.jpg}
-\caption{}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[scale=1]{Figures/ch_H.jpg}
-\caption{}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[scale=1]{Figures/ch_rho.jpg}
-\caption{}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[scale=1]{Figures/ch_Om.jpg}
-\caption{}
-\end{figure}
 
 \section*{Appendix C - UDF}
 Deriving the energy density using EoS:
@@ -1195,58 +1086,8 @@ a^{3}\rho&= -\brac{P_{a}a^{3}+\frac{3}{4}P_{b}\brac{2a^{2}-a^{4}}}+C \\
 \rho&= -P_{a}+\frac{3}{4}P_{b}\brac{a-2a^{-1}}+Ca^{-3}. \\
 \end{split}
 \end{equation}
-Substituting this into the Friedman equation gives:
-\begin{equation}\label{eq:UDFFEQ}
-\begin{split}
-\dot{a}^{2} &= A\rho a^{2}-kB        \\
-\dot{a}^{2} &= Aa^{2}\brac{-P_{a}+\frac{3}{4}P_{b}\brac{a-2a^{-1}}+Ca^{-3}}-kB\\
-\dot{a}^{2} &= A\brac{-P_{a}a^{2}+\frac{3}{4}P_{b}\brac{a^{3}-2a^{1}}+Ca^{-1}}-kB\\
-\Rightarrow \dot{a} &= \sqrt{A\brac{-P_{a}a^{2}+\frac{3}{4}P_{b}\brac{a^{3}-2a^{1}}+Ca^{-1}}-kB} \\
-\Rightarrow t-t_{0} &= \int \frac{da}{\sqrt{A\brac{-P_{a}a^{2}+\frac{3}{4}P_{b}\brac{a^{3}-2a^{1}}+Ca^{-1}}-kB}} \\
-\end{split}
-\end{equation}
-Integrating this with the same method as the Chaplygin gas for the three different curvatures gives:
-
-\begin{figure}[H]
-\centering
-\includegraphics[scale=1]{Figures/UDF_a_vs_t.jpg}
-\caption{ }
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[scale=1]{Figures/UDF_q.jpg}
-\caption{}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[scale=1]{Figures/UDF_addot.jpg}
-\caption{}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[scale=1]{Figures/UDF_H.jpg}
-\caption{}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[scale=1]{Figures/UDF_rho.jpg}
-\caption{}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[scale=1]{Figures/UDF_Om.jpg}
-\caption{}
-\end{figure}
 
 
-\pagebreak
-\subsection*{Abstract}
-Dark energy and dark matter account for nearly 95\% of the matter-energy content of the universe, yet very little is known about both dark energy and dark matter. We aim to look at the impact of unifying Dark energy and Dark matter into a single Dark fluid Equation of state and solving the Friedman equations for such a fluid. The first candidate that is looked at is the Chaplygin gas Equation of state. The behaviour of the expansion coefficient is looked at for different epochs. The Friedman equations are also solved for a pure dark fluid parametrization Equation of state and the behaviour of the accelerated expansion for this equation of state is investigated. 
 
 
 %\citep{notes4}

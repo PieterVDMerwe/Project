@@ -1,0 +1,4 @@
+\beamer@sectionintoc {1}{Solving the Friedmann equations for two different dark fluid equations of state}{2}{0}{1}
+\beamer@subsectionintoc {1}{1}{Energy density and acceleration of a for MCG case}{3}{0}{1}
+\beamer@subsectionintoc {1}{2}{Energy and acceleration of a for PPUDF case}{4}{0}{1}
+\beamer@sectionintoc {2}{Conclusions and Acknowledgements}{5}{0}{2}

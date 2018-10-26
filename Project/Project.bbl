@@ -19,7 +19,7 @@ T~A Wagner, S~Schlamminger, J~H Gundlach, and E~G Adelberger.
 Ivan Debono and George~F. Smoot.
 \newblock General relativity and cosmology: Unsolved questions and future
   directions.
-\newblock 2(4), 2016.
+\newblock {\em Universe}, 2(4), 2016.
 
 \bibitem{NPSNe}
 Brian~P. Schmidt.
@@ -29,8 +29,15 @@ Brian~P. Schmidt.
 
 \bibitem{Friedman1922}
 A.~Friedman.
-\newblock {\"U}ber die kr{\"u}mmung des raumes.
+\newblock {\"U}ber die {K}r{\"u}mmung des raumes.
 \newblock {\em Zeitschrift f{\"u}r Physik}, 10(1):377--386, Dec 1922.
+
+\bibitem{Hubble168}
+Edwin Hubble.
+\newblock A relation between distance and radial velocity among extra-galactic
+  nebulae.
+\newblock {\em Proceedings of the National Academy of Sciences},
+  15(3):168--173, 1929.
 
 \bibitem{HPValue}
 C.~Grillo, P.~Rosati, S.~H. Suyu, I.~Balestra, G.~B. Caminha, A.~Halkola, P.~L.
@@ -45,7 +52,7 @@ D~Weinberg.
 
 \bibitem{IronShell}
 David Surowski.
-\newblock David surowski, 2011.
+\newblock Newton`s shell theorem, 2011.
 \newblock \url{https://www.math.ksu.edu/~dbski/writings/shell.pdf}.
 
 \bibitem{Curv}
@@ -67,7 +74,7 @@ Alan~H. Guth.
 
 \bibitem{GRES}
 Albert Einstein.
-\newblock {\em General relativity; an Einstein centenary survey}.
+\newblock {\em General relativity; an {E}instein centenary survey}.
 \newblock CUP Archive, 1979.
 
 \bibitem{RMCGAU}

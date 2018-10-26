@@ -115,77 +115,58 @@ def addot(a):
 def chrho(a):
     return (B3*a**(-3.0*beta*B1) + B2)**(1.0/beta);
 
-#upper = 1.0
+upper = 1.0
+ak = [-1.0,0.0,1.0];
+for i in ak:
+    k=i;
+    setParm(k);
+    intag(adotNoParm,upper,0.001);
+    if (k==0.0):
+        analyt(upper,0.001);
+    plt.legend();
+    plt.ylabel('Scale factor a');
+    plt.xlabel('Time t');
+#    plt.xlim(10e-15,10e11);
+    plt.xscale('log');
+#    plt.yscale('log');
+plt.legend();
+plt.savefig('a_ch.jpg',dpi=300);
+plt.show();
+
+#upper = 2.0
 #ak = [-1.0,0.0,1.0];
 #for i in ak:
 #    k=i;
-#    setParm(k);
-#    intag(adotNoParm,upper,0.001);
-#    if (k==0.0):
-#        analyt(upper,0.001);
+#    intag(chz,upper,0.001);
+##    if (k==0.0):
+##        analytChz(upper,0.0001);
 #    plt.legend();
-#    plt.ylabel('a');
+#    plt.ylabel('z');
 #    plt.xlabel('t');
-##    plt.xlim(10e-15,10e11);
-#    plt.xscale('log');
-##    plt.yscale('log');
+##    plt.xscale('symlog');
 #plt.legend();
-#plt.savefig('a_ch.jpg',dpi=300);
+#plt.savefig('z_ch.jpg',dpi=300);
 #plt.show();
-#
-##upper = 2.0
-##ak = [-1.0,0.0,1.0];
-##for i in ak:
-##    k=i;
-##    intag(chz,upper,0.001);
-###    if (k==0.0):
-###        analytChz(upper,0.0001);
-##    plt.legend();
-##    plt.ylabel('z');
-##    plt.xlabel('t');
-###    plt.xscale('symlog');
-##plt.legend();
-##plt.savefig('z_ch.jpg',dpi=300);
-##plt.show();
-#
-#
-##def ch_h(z,k,r):
-##    global B1;
-##    global F;
-##    global H0;
-##    global beta;
-##    return (((r/(r+1.0))*(1.0+z)**(3*beta*B1) + 1.0/(r+1.0))**(1.0/beta)+(F*k/(H0**2))*(((r/(r+1.0))*(z+1.0)**(3*beta*B1)+1.0/(r+1.0))**(1.0/beta)-(1.0+z)**2))**(0.5); 
-##
-##for i in ak:
-##    k=i;
-##    setParm(k);
-##    print '######################## ' + str(A1);
-##    x = np. arange(0,8.0,0.001);
-##    if i==ak[-1]:
-##        plt.plot(x,ch_h(x,k,3.0),label='k='+str(k),dashes=[4,2]);     
-##    elif i==-1.0:
-##        plt.plot(x,ch_h(x,k,3.0),label='k='+str(k),linewidth=4.0);       
-##    else:
-##        plt.plot(x,ch_h(x,k,3.0),label='k='+str(k));
-##    plt.yscale('log');
-##    plt.ylabel(r"$h$");
-###    plt.ylim(10e5,10e12);
-###    plt.xlim(0,0.1);
-##    plt.xlabel(r"z");
-##plt.legend();
-##plt.savefig('ch_H.jpg',dpi=300);
-##plt.show();
-#
+
+
+#def ch_h(z,k,r):
+#    global B1;
+#    global F;
+#    global H0;
+#    global beta;
+#    return (((r/(r+1.0))*(1.0+z)**(3*beta*B1) + 1.0/(r+1.0))**(1.0/beta)+(F*k/(H0**2))*(((r/(r+1.0))*(z+1.0)**(3*beta*B1)+1.0/(r+1.0))**(1.0/beta)-(1.0+z)**2))**(0.5); 
 #
 #for i in ak:
 #    k=i;
-#    x = np. arange(0.1,1.0,0.001);
+#    setParm(k);
+#    print '######################## ' + str(A1);
+#    x = np. arange(0,8.0,0.001);
 #    if i==ak[-1]:
-#        plt.plot(z(x),chadot(x)/H0,label='k='+str(k),dashes=[4,2]);     
+#        plt.plot(x,ch_h(x,k,3.0),label='k='+str(k),dashes=[4,2]);     
 #    elif i==-1.0:
-#        plt.plot(z(x),chadot(x)/H0,label='k='+str(k),linewidth=4.0);       
+#        plt.plot(x,ch_h(x,k,3.0),label='k='+str(k),linewidth=4.0);       
 #    else:
-#        plt.plot(z(x),chadot(x)/H0,label='k='+str(k));
+#        plt.plot(x,ch_h(x,k,3.0),label='k='+str(k));
 #    plt.yscale('log');
 #    plt.ylabel(r"$h$");
 ##    plt.ylim(10e5,10e12);
@@ -194,93 +175,112 @@ def chrho(a):
 #plt.legend();
 #plt.savefig('ch_H.jpg',dpi=300);
 #plt.show();
-#
-#upper = 1.0
-#lw = [7.0,3.0,1.0];
-#for i in range(3):
-#    k=ak[i];
-#    setParm(k);
-##    plt.subplot(2,2,i+1);
-#    a = np. arange(0.1,upper,0.00001);
-#    q = -A*addot(a)*(a**2)/(1.0/adotNoParm(a))**(2.0);
-#    plt.plot(z(a),q,label='k='+str(k));
-##    plt.plot(a,q,label='k='+str(k),linewidth=lw[i]);
-#    #plt.plot(a,addot(a));
-##    plt.ylim(-0.5,0.5);
-#    plt.xscale('log');
-##    plt.yscale('symlog');
-#    if i == 0:
-#        plt.ylabel(r"$q$");
-##        plt.yscale('symlog');
-##        plt.ylim(-0.5,1.0)
-##        plt.yscale('symlog');
-##    if i == 2:
-##        plt.ylim(-0.5,0.5);
-##        plt.yscale('log');
-#    if i == 1:
-#        plt.xlabel('z');
-##        plt.yscale('symlog');
-#    plt.grid(True);
-##    plt.ylim(-2.9e18,2.0e3);
-##    plt.ylim(-0.25e26,10.0e25);
-##    plt.yscale('log');
-#    plt.legend();
-#plt.tight_layout();
-#plt.savefig('ch_q.jpg',dpi=300);
-#plt.show();
-#
-#upper = 2.0
-#a = np. arange(0.1,upper,0.00001);
-#for i in range(3):
-#    k=ak[i];
-#    setParm(k);
-#    ddot = addot(a);
-#    if k == 0.0:
-#        plt.plot(a,ddot,label='k='+str(k),dashes=[4,2]);
-#    else:
-##        plt.plot(a,ddot,label='k='+str(k));
-#        print '1';
-#    #plt.plot(a,addot(a));
-#    plt.ylabel(r"$\ddot{a}/a$");
-#    plt.xlabel('a');
-#    plt.ylim(-6,6);
-#    plt.xlim(0.65,1.2);
-#plt.grid(True);
-#plt.legend();
-##plt.xscale('log');
-##plt.yscale('symlog');
-##plt.legend();
-#plt.savefig('ch_ddota.jpg',dpi=300);
-#plt.show();
-#
-#x = np. arange(0.1,1,0.0001);
-#plt.plot(z(x),chrho(x));
-#plt.yscale('log');
-#plt.ylabel(r"$\rho$");
-#plt.xlabel(r"z");
-##plt.xscale('log');
-#plt.savefig('Ch_rho.jpg',dpi=300);
-#plt.show();
-#
-#
-#a = np. arange(0.5,1.0,0.00001);
-#
-#plt.plot(z(a),Ohm_fn(chrho,a),label=r"$\Omega_{Ch}$");
-#for i in range(3):
-#    k=ak[i];
-#    plt.plot(z(a),Ohm_curv(k,a),label=r"$\Omega_{%.0f}$"%(k));
-#    
-##plt.yscale('symlog');
-#plt.ylabel(r"$\Omega(z)$");
-#plt.xlabel('z');
-#plt.legend();
-#plt.grid(True);
-#plt.savefig('ch_Om.jpg',dpi=300);
-#plt.show();
 
-################################################################################
-####################         UDF             ###################################  
-################################################################################
+
+for i in ak:
+    k=i;
+    x = np. arange(0.3,1.0,0.001);
+    if i==ak[-1]:
+        plt.plot(z(x),chadot(x)/H0,label='k='+str(k),dashes=[4,2]);     
+    elif i==-1.0:
+        plt.plot(z(x),chadot(x)/H0,label='k='+str(k),linewidth=4.0);       
+    else:
+        plt.plot(z(x),chadot(x)/H0,label='k='+str(k));
+#    plt.yscale('log');
+    plt.ylabel(r"Dimensionless Hubble parameter $h$");
+#    plt.ylim(10e5,10e12);
+#    plt.xlim(0,0.1);
+    plt.xlabel(r"Red-shift z");
+plt.legend();
+plt.savefig('ch_H.jpg',dpi=300);
+plt.show();
+
+upper = 1.0
+lw = [7.0,3.0,1.0];
+for i in range(3):
+    k=ak[i];
+    setParm(k);
+#    plt.subplot(2,2,i+1);
+    a = np. arange(0.3,upper,0.00001);
+    q = -A*addot(a)*(a**2)/(1.0/adotNoParm(a))**(2.0);
+    plt.plot(z(a),q,label='k='+str(k));
+#    plt.plot(a,q,label='k='+str(k),linewidth=lw[i]);
+    #plt.plot(a,addot(a));
+#    plt.ylim(-0.5,0.5);
+    plt.xscale('log');
+#    plt.yscale('symlog');
+    if i == 0:
+        plt.ylabel(r"Deceleration parameter $q$");
+#        plt.yscale('symlog');
+#        plt.ylim(-0.5,1.0)
+#        plt.yscale('symlog');
+#    if i == 2:
+#        plt.ylim(-0.5,0.5);
+#        plt.yscale('log');
+    if i == 1:
+        plt.xlabel('Red-shift z');
+#        plt.yscale('symlog');
+    plt.grid(True);
+#    plt.ylim(-2.9e18,2.0e3);
+#    plt.ylim(-0.25e26,10.0e25);
+#    plt.yscale('log');
+    plt.legend();
+plt.tight_layout();
+plt.savefig('ch_q.jpg',dpi=300);
+plt.show();
+
+upper = 2.0
+a = np. arange(0.1,upper,0.00001);
+for i in range(3):
+    k=ak[i];
+    setParm(k);
+    ddot = addot(a);
+    if k == 0.0:
+        plt.plot(a,ddot,label='k='+str(k),dashes=[4,2]);
+    else:
+#        plt.plot(a,ddot,label='k='+str(k));
+        print '1';
+    #plt.plot(a,addot(a));
+    plt.ylabel(r"$\ddot{a}/a$");
+    plt.xlabel('Scale factor a');
+    plt.ylim(-6,6);
+    plt.xlim(0.65,1.2);
+plt.grid(True);
+#plt.legend();
+#plt.xscale('log');
+#plt.yscale('symlog');
+#plt.legend();
+plt.savefig('ch_ddota.jpg',dpi=300);
+plt.show();
+
+x = np. arange(0.3,2,0.0001);
+plt.plot(z(x),chrho(x));
+plt.yscale('log');
+plt.ylabel(r"Energy density $\rho$");
+plt.xlabel(r"Red-shift z");
+#plt.xscale('log');
+plt.savefig('Ch_rho.jpg',dpi=300);
+plt.show();
+
+
+a = np. arange(0.5,1.0,0.00001);
+
+plt.plot(z(a),Ohm_fn(chrho,a),label=r"$\Omega_{Ch}$");
+for i in range(3):
+    k=ak[i];
+    plt.plot(z(a),Ohm_curv(k,a),label=r"$\Omega_{%.0f}$"%(k));
+    
+#plt.yscale('symlog');
+plt.ylabel(r"Fractional energy density $\Omega(z)$");
+plt.xlabel('Red-shift z');
+plt.legend();
+plt.grid(True);
+plt.savefig('ch_Om.jpg',dpi=300);
+plt.show();
+
+###############################################################################
+###################         UDF             ###################################  
+###############################################################################
 
 print '###############################################################################\n                 UDF                  \n###############################################################################'; 
 
@@ -338,27 +338,27 @@ plt.show();
 #plt.savefig('UDF_z_vs_t.jpg',dpi=300);
 #plt.show();
 
-x = np. arange(0.1,5.5,0.001);
+x = np. arange(0.3,5.5,0.001);
 udfrho=UDFrho(x,c3,c1,c4);
 plt.plot(z(x),udfrho);
-plt.yscale('log');
-plt.ylim(1,1e4);
+#plt.yscale('log');
+#plt.ylim(1,1e4);
 #plt.xscale('log');
-plt.ylabel(r"$\rho$");
-plt.xlabel(r"z");
+plt.ylabel(r"Energy Density $\rho$");
+plt.xlabel(r"Red-shift z");
 plt.savefig('UDF_rho.jpg',dpi=300);
 plt.show();
 
 for m in ak:
     k=m;
-    x = np. arange(0.1,1,0.01);
+    x = np. arange(0.3,1,0.01);
     h=np.sqrt(UDFH(x))/H0;
     plt.plot(z(x),h,label='k='+str(k));
     print k;
 #plt.yscale('log');
 #plt.ylim(0.8,1.1);
-plt.ylabel(r"$h$");
-plt.xlabel(r"z");
+plt.ylabel(r"Dimensionless Hubble parameter $h$");
+plt.xlabel(r"Red-shift z");
 plt.legend();
 plt.savefig('UDF_H.jpg',dpi=300);
 plt.show();
@@ -369,7 +369,7 @@ plt.plot(x,UDFacc(x,c3,c1,c4)/A);
 plt.ylim(-9.0,4);
 plt.xlim(0.34,1.5);
 plt.ylabel(r"$\ddot{a}/a$");
-plt.xlabel(r"a");
+plt.xlabel(r"Scale factor a");
 plt.grid(True);
 plt.savefig('UDF_addot.jpg',dpi=300);
 plt.show();
@@ -391,22 +391,22 @@ for m in ak:
 #    plt.xlim(0,8.0);
     plt.grid(True);
     plt.legend();
-    plt.ylabel(r"$q$");
-    plt.xlabel(r"z");
+    plt.ylabel(r"Deceleration parameter $q$");
+    plt.xlabel(r"Red-shift z");
 plt.xscale('log');
 plt.tight_layout();
 plt.savefig('UDF_q.jpg',dpi=300);
 plt.show();
 
-a = np. arange(0.1,1.0,0.00001);
-plt.plot(z(a),Ohm_fn(UDFrho2,a),label=r"$\Omega_{UDF}$");
+a = np. arange(0.3,1.0,0.00001);
+plt.plot(z(a),Ohm_fn(UDFrho2,a),label=r"$\Omega_{PPUDF}$");
 for i in range(3):
     k=ak[i];
     plt.plot(z(a),Ohm_curv(k,a),label=r"$\Omega_{%.0f}$"%(k));
     
 #plt.yscale('symlog');
-plt.ylabel(r"$\Omega(z)$");
-plt.xlabel('z');
+plt.ylabel(r"Fractional energy density $\Omega(z)$");
+plt.xlabel('Red-shift z');
 plt.legend();
 plt.grid(True);
 plt.savefig('UDF_Om.jpg',dpi=300);
