@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6630 64-bit) (preloaded format=pdflatex 2018.6.26)  26 OCT 2018 11:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6630 64-bit) (preloaded format=pdflatex 2018.6.26)  26 OCT 2018 11:53
 entering extended mode
 **./Project.tex
 (Project.tex
@@ -2587,7 +2587,7 @@ Here is how much of TeX's memory you used:
  31695 multiletter control sequences out of 15000+200000
  553357 words of font info for 159 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 49i,20n,65p,1742b,901s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 49i,20n,65p,1744b,901s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\user\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi657\t
 crm1000.pk><C:/Users/user/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/
 amsfonts/cm/cmbx10.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX 2.9/fonts/t
@@ -2618,7 +2618,7 @@ c/amsfonts/cm/cmti10.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX 2.9/fonts
 /type1/public/amsfonts/cm/cmti12.pfb><C:/Users/user/AppData/Local/Programs/MiKT
 eX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/user/AppData/Local/P
 rograms/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on Project.pdf (40 pages, 2240470 bytes).
+Output written on Project.pdf (40 pages, 2240483 bytes).
 PDF statistics:
  712 PDF objects out of 1000 (max. 8388607)
  190 named destinations out of 1000 (max. 500000)
